@@ -7,19 +7,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link rel='stylesheet' href='https://rsms.me/inter/inter.css'>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --color-primary: hsl(228, 45%, 35%);
-      --color-accent: #ff7a00;
-      --color-blue: #0077ff;
+      --color-primary: #0f172a;
+      --color-secondary: #1e293b;
+      --color-accent: #f97316;
+      --color-blue: #3b82f6;
       --color-accent-light: hsl(33, 100%, 96%);
       --color-dark: #0f2433;
-      --color-muted: #58606a;
-      --color-bg: #f8fafc;
-      --color-card: #ffffff;
-      --color-primary-rgb: 62, 72, 104; 
-      --color-accent-rgb: 255, 122, 0;
-      --color-blue-rgb: 0, 119, 255;
+      --color-muted: #94a3b8;
+      --color-bg: #0f172a;
+      --color-card: rgba(255, 255, 255, 0.08);
+      --color-primary-rgb: 15, 23, 42; 
+      --color-accent-rgb: 249, 115, 22;
+      --color-blue-rgb: 59, 130, 246;
       --gradient: linear-gradient(90deg, var(--color-accent), var(--color-blue));
       --s-5: 0.5rem;
       --s-4: 0.625rem;
@@ -74,8 +76,8 @@
       font-weight: 400;
       font-size: 16px;
       line-height: 1.65;
-      background-color: var(--color-bg);
-      color: var(--color-dark);
+      background: linear-gradient(135deg, var(--color-primary), #1e1b4b);
+      color: #f1f5f9;
       overflow-x: hidden;
     }
 
@@ -184,6 +186,23 @@
       transition: all 0.3s ease;
       box-shadow: 0 10px 28px rgba(var(--color-blue-rgb), 0.25);
       border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
     }
 
     .btn:hover {
@@ -223,7 +242,7 @@
     .section-title {
       font-size: clamp(1.875rem, 5vw, 3rem);
       font-weight: 800;
-      color: var(--color-dark);
+      color: #f1f5f9;
       margin: 0;
       position: relative;
       padding-bottom: var(--s-2);
@@ -248,13 +267,14 @@
 
     /* Abstract Card */
     .abstract-card {
-      background: var(--color-card);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
       padding: var(--s2);
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       position: relative;
       transition: all 0.3s ease;
-      border: 1px solid rgba(10, 20, 30, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     @media (min-width: 768px) {
@@ -265,15 +285,16 @@
     }
 
     .abstract-card:hover {
-      box-shadow: 0 12px 50px rgba(var(--color-primary-rgb), 0.15);
+      box-shadow: 0 12px 50px rgba(var(--color-blue-rgb), 0.15);
       transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .abstract-card p {
       margin-bottom: var(--s1);
       font-size: clamp(0.9375rem, 2vw, 1.0625rem);
       line-height: 1.75;
-      color: var(--color-muted);
+      color: #d0d0e0;
       font-weight: 300;
     }
 
@@ -304,11 +325,31 @@
     .stat-card {
       text-align: center;
       padding: var(--s2);
-      background: linear-gradient(180deg, #fff, #fcfdff);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
       transition: all 0.3s ease;
-      border: 2px solid transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(249, 115, 22, 0.1));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: -1;
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
     }
 
     .stat-card:hover {
@@ -334,7 +375,7 @@
 
     .stat-label {
       font-size: clamp(0.875rem, 1.8vw, 1rem);
-      color: var(--color-dark);
+      color: #f1f5f9;
       font-weight: 600;
       line-height: 1.4;
     }
@@ -359,16 +400,17 @@
     }
 
     .tech-card {
-      background: var(--color-card);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
       padding: var(--s2);
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(10, 20, 40, 0.06);
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
       overflow: hidden;
       opacity: 0;
       transform: translateY(20px);
-      border: 1px solid rgba(10, 20, 30, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       cursor: pointer;
     }
 
@@ -423,10 +465,11 @@
     .tech-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 24px 60px rgba(3, 11, 40, 0.12);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .tech-card h3 {
-      color: var(--color-dark);
+      color: #f1f5f9;
       font-size: clamp(1.125rem, 2.5vw, 1.5rem);
       font-weight: 600;
       letter-spacing: -0.01em;
@@ -437,7 +480,7 @@
 
     .tech-card p {
       font-weight: 300;
-      color: var(--color-muted);
+      color: #d0d0e0;
       font-size: clamp(0.875rem, 1.8vw, 1rem);
       line-height: 1.7;
       margin: 0;
@@ -464,12 +507,13 @@
     }
 
     .method-card {
-      background: var(--color-card);
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
       padding: var(--s2);
       border-radius: 16px;
       box-shadow: 0 4px 15px rgba(44, 62, 80, 0.08);
       transition: all 0.3s ease;
-      border: 1px solid rgba(10, 20, 30, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     @media (min-width: 768px) {
@@ -481,11 +525,12 @@
 
     .method-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(var(--color-primary-rgb), 0.15);
+      box-shadow: 0 8px 30px rgba(var(--color-blue-rgb), 0.15);
+      background: rgba(255, 255, 255, 0.12);
     }
 
     .method-card h3 {
-      color: var(--color-primary);
+      color: var(--color-blue);
       font-size: clamp(1.125rem, 2.5vw, 1.5rem);
       font-weight: 600;
       margin-bottom: var(--s-1);
@@ -494,7 +539,7 @@
     }
 
     .method-card p {
-      color: var(--color-muted);
+      color: #d0d0e0;
       font-weight: 300;
       font-size: clamp(0.9375rem, 2vw, 1.0625rem);
       line-height: 1.7;
@@ -527,10 +572,11 @@
       max-height: 86vh;
       overflow: auto;
       border-radius: 20px;
-      background: var(--color-card);
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(12px);
       box-shadow: 0 30px 90px rgba(8, 12, 30, 0.36);
       padding: 0;
-      border: 1px solid rgba(10, 20, 30, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       transform: translateY(20px) scale(0.95);
       transition: transform 0.3s ease, opacity 0.3s;
     }
@@ -565,7 +611,7 @@
 
     .modal-title {
       font-weight: 800;
-      color: var(--color-dark);
+      color: #f1f5f9;
       font-size: clamp(1.25rem, 3vw, 1.75rem);
       margin: 0;
       font-family: "Inter", sans-serif;
@@ -573,7 +619,7 @@
     }
 
     .modal-sub {
-      color: var(--color-muted);
+      color: #d0d0e0;
       font-size: clamp(0.875rem, 2vw, 1rem);
       margin-top: var(--s-3);
       font-weight: 400;
@@ -582,14 +628,14 @@
     .modal-close {
       margin-left: auto;
       border: none;
-      background: #f1f3f5;
+      background: rgba(255, 255, 255, 0.1);
       width: 36px;
       height: 36px;
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.2s ease;
       font-size: 18px;
-      color: var(--color-dark);
+      color: #f1f5f9;
       flex-shrink: 0;
     }
 
@@ -608,7 +654,7 @@
       padding: 0.25rem 0.75rem;
       border-radius: 999px;
       background: linear-gradient(135deg, rgba(255, 122, 0, 0.1), rgba(0, 119, 255, 0.1));
-      color: var(--color-dark);
+      color: #f1f5f9;
       font-weight: 600;
       font-size: 0.8125rem;
       margin-right: 0.5rem;
@@ -617,7 +663,7 @@
     }
 
     .modal-body {
-      color: var(--color-muted);
+      color: #d0d0e0;
       font-size: clamp(0.9375rem, 2vw, 1.0625rem);
       line-height: 1.75;
       font-weight: 400;
@@ -657,6 +703,70 @@
       font-weight: 300;
     }
 
+    /* Floating elements animation */
+    .floating-elements {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .floating-element {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+
+    .floating-element:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      width: 80px;
+      height: 80px;
+      animation-duration: 20s;
+    }
+
+    .floating-element:nth-child(2) {
+      top: 70%;
+      left: 80%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 15s;
+      animation-delay: 2s;
+    }
+
+    .floating-element:nth-child(3) {
+      top: 40%;
+      left: 85%;
+      width: 60px;
+      height: 60px;
+      animation-duration: 25s;
+      animation-delay: 5s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(20px, 30px) rotate(90deg);
+      }
+      50% {
+        transform: translate(0, 60px) rotate(180deg);
+      }
+      75% {
+        transform: translate(-20px, 30px) rotate(270deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
     /* Reveal Animation */
     .reveal {
       opacity: 0;
@@ -690,6 +800,12 @@
   </style>
 </head>
 <body>
+  <div class="floating-elements">
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+  </div>
+
   <section class="hero">
     <div class="hero-content">
       <h1 class="hero-title">HAYTHAM X ONE</h1>
@@ -990,6 +1106,21 @@ Predictive maintenance reduces unexpected downtime by 30-50% and extends equipme
     if (techSection && !techSection.classList.contains('reveal')) {
       techSection.classList.add('reveal');
       revealObserver.observe(techSection);
+    }
+
+    // Add random floating elements
+    const floatingContainer = document.querySelector('.floating-elements');
+    for (let i = 0; i < 5; i++) {
+      const element = document.createElement('div');
+      element.classList.add('floating-element');
+      element.style.left = `${Math.random() * 100}%`;
+      element.style.top = `${Math.random() * 100}%`;
+      element.style.width = `${30 + Math.random() * 70}px`;
+      element.style.height = element.style.width;
+      element.style.animationDuration = `${15 + Math.random() * 20}s`;
+      element.style.animationDelay = `${Math.random() * 10}s`;
+      element.style.background = `rgba(255, 255, 255, ${0.02 + Math.random() * 0.06})`;
+      floatingContainer.appendChild(element);
     }
   </script>
 </body>
