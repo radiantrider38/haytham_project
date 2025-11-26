@@ -3,1125 +3,862 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HAYTHAM X ONE - Renewable Energy Nexus</title>
+  <title>HAYTHAM X ONE | Reliable Energy Nexus</title>
+  <meta name="description" content="A comprehensive approach to renewable energy for Bangladesh combining CSP, AI, and Hybrid Storage.">
+  
+  <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <link rel='stylesheet' href='https://rsms.me/inter/inter.css'>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     :root {
-      --color-primary: #0f172a;
-      --color-secondary: #1e293b;
-      --color-accent: #f97316;
-      --color-blue: #3b82f6;
-      --color-accent-light: hsl(33, 100%, 96%);
-      --color-dark: #0f2433;
-      --color-muted: #94a3b8;
-      --color-bg: #0f172a;
-      --color-card: rgba(255, 255, 255, 0.08);
-      --color-primary-rgb: 15, 23, 42; 
-      --color-accent-rgb: 249, 115, 22;
-      --color-blue-rgb: 59, 130, 246;
-      --gradient: linear-gradient(90deg, var(--color-accent), var(--color-blue));
-      --s-5: 0.5rem;
-      --s-4: 0.625rem;
-      --s-3: 0.75rem;
-      --s-2: 0.875rem;
-      --s-1: 1rem;
-      --s0: 1.125rem;
-    	--s1: 1.375rem;
-      --s2: 1.75rem;
-      --s3: 2.25rem;
-      --s4: 3rem;
-      --s5: 4rem;
-      --s6: 5.5rem;
+      /* Color Palette */
+      --color-primary: #0f172a;       /* Dark Slate */
+      --color-secondary: #1e293b;     /* Lighter Slate */
+      --color-accent: #f97316;        /* Solar Orange */
+      --color-blue: #3b82f6;          /* Water/Tech Blue */
+      --color-green: #10b981;         /* Eco Green */
+      --color-text-main: #f1f5f9;
+      --color-text-muted: #94a3b8;
+      
+      --color-card-bg: rgba(255, 255, 255, 0.04);
+      --color-card-border: rgba(255, 255, 255, 0.08);
+      
+      --gradient-main: linear-gradient(135deg, var(--color-accent), var(--color-blue));
+      
+      /* Spacing */
+      --s-1: 0.5rem;
+      --s1: 1rem;
+      --s2: 2rem;
+      --s3: 3rem;
+      --s4: 5rem;
+      --s5: 8rem;
     }
 
-    @media (min-width: 768px) {
-      :root {
-        --s0: 1.25rem;
-        --s1: 1.5rem;
-        --s2: 2rem;
-        --s3: 2.75rem;
-        --s4: 3.5rem;
-        --s5: 5rem;
-        --s6: 7rem;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      :root {
-        --s0: 1.375rem;
-        --s1: 1.75rem;
-        --s2: 2.25rem;
-        --s3: 3rem;
-        --s4: 4rem;
-        --s5: 5.5rem;
-        --s6: 8rem;
-      }
-    }
-
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.65;
-      background: linear-gradient(135deg, var(--color-primary), #1e1b4b);
-      color: #f1f5f9;
+      font-family: "Space Grotesk", "Inter", sans-serif;
+      background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #17153B 100%);
+      color: var(--color-text-main);
       overflow-x: hidden;
+      line-height: 1.7; /* Improved readability */
+      font-size: 16px;
     }
 
-    /* Hero Section */
+    /* --- Typography & Utilities --- */
+    h1, h2, h3, h4 { 
+      font-family: "Inter", sans-serif; 
+      letter-spacing: -0.02em; 
+      line-height: 1.2;
+    }
+    
+    p {
+      text-align: justify; /* Justified text as requested */
+      text-justify: inter-word;
+      margin-bottom: 1.25rem;
+      color: #cbd5e1;
+    }
+
+    .text-gradient {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 32px;
+      background: var(--gradient-main);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 1rem;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(249, 115, 22, 0.4); }
+    
+    .btn.outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: none;
+    }
+    .btn.outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: white;
+    }
+
+    /* --- Hero Section --- */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, var(--color-primary) 0%, #0d1226 100%);
       position: relative;
       overflow: hidden;
-      padding: var(--s3);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      opacity: 0.15;
-      pointer-events: none;
-    }
-
-    .hero-content {
       text-align: center;
-      color: white;
-      z-index: 1;
-      max-width: 1100px;
-      width: 100%;
-      animation: fadeInUp 1s ease-out;
+      padding: 100px 20px;
     }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-title {
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: var(--s-1);
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      font-family: "Inter", sans-serif;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1.125rem, 3vw, 1.875rem);
-      margin-bottom: var(--s2);
-      opacity: 0.92;
-    	font-weight: 400;
-      line-height: 1.4;
-    }
-
-    .hero-description {
-      font-weight: 300;
-      opacity: 0.85;
-      max-width: 750px;
-      margin: 0 auto var(--s3);
-      font-size: clamp(0.9375rem, 2vw, 1.125rem);
-      line-height: 1.6;
-    }
-
-    .scroll-indicator {
+    .hero-bg-anim {
       position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 2s infinite ease-in-out;
-      cursor: pointer;
-      opacity: 0.6;
-      transition: opacity 0.3s;
-    }
-
-    .scroll-indicator:hover {
-      opacity: 1;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-10px); }
-    }
-
-    .scroll-indicator::after {
-      content: "↓";
-      font-size: 2rem;
-      color: white;
-    }
-
-    /* Button */
-    .btn {
-      display: inline-block;
-      padding: var(--s-1) var(--s2);
-      background: var(--gradient);
-      color: white;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: var(--s0);
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 28px rgba(var(--color-blue-rgb), 0.25);
-      border: none;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 46px rgba(var(--color-blue-rgb), 0.35);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    /* Container & Section */
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: var(--s3);
-    }
-
-    @media (min-width: 768px) {
-      .container {
-        padding: var(--s4);
-      }
-    }
-
-    .section {
-      margin-top: var(--s5);
-    }
-
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: var(--s2);
-    }
-
-    .section-title {
-      font-size: clamp(1.875rem, 5vw, 3rem);
-      font-weight: 800;
-      color: #f1f5f9;
-      margin: 0;
-      position: relative;
-      padding-bottom: var(--s-2);
-      font-family: "Inter", sans-serif;
-      letter-spacing: -0.02em;
-    }
-
-    .section-title::after {
-      content: "";
-      display: block;
-      height: 4px;
-      width: 110px;
-      border-radius: 999px;
-      margin-top: 8px;
-      background: var(--gradient);
-      transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.12, 1);
-    }
-
-    .section-title:hover::after {
-      transform: translateY(-2px) scaleX(1.15);
-    }
-
-    /* Abstract Card */
-    .abstract-card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      padding: var(--s2);
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      position: relative;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    @media (min-width: 768px) {
-      .abstract-card {
-        padding: var(--s3);
-        border-radius: 20px;
-      }
-    }
-
-    .abstract-card:hover {
-      box-shadow: 0 12px 50px rgba(var(--color-blue-rgb), 0.15);
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .abstract-card p {
-      margin-bottom: var(--s1);
-      font-size: clamp(0.9375rem, 2vw, 1.0625rem);
-      line-height: 1.75;
-      color: #d0d0e0;
-      font-weight: 300;
-    }
-
-    .abstract-card p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* Stats Grid */
-    .stats {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--s2);
-      margin-top: var(--s4);
-    }
-
-    @media (min-width: 540px) {
-      .stats {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .stats {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .stat-card {
-      text-align: center;
-      padding: var(--s2);
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(249, 115, 22, 0.1));
-      opacity: 0;
-      transition: opacity 0.5s ease;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: 
+        radial-gradient(circle at 15% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 25%);
       z-index: -1;
     }
 
-    .stat-card:hover::before {
-      opacity: 1;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(var(--color-accent-rgb), 0.3);
-      box-shadow: 0 12px 30px rgba(var(--color-blue-rgb), 0.15);
-    }
-
-    .stat-number {
-      font-size: clamp(1.875rem, 5vw, 3rem);
+    .hero h1 {
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
       font-weight: 800;
-      color: var(--color-blue);
-      display: block;
-      margin-bottom: var(--s-3);
-      letter-spacing: -0.02em;
-      font-family: "Inter", sans-serif;
-      transition: color 0.3s ease;
+      margin-bottom: 24px;
     }
 
-    .stat-card:hover .stat-number {
-      color: var(--color-accent);
-    }
-
-    .stat-label {
-      font-size: clamp(0.875rem, 1.8vw, 1rem);
-      color: #f1f5f9;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    /* Technologies Grid */
-    .technologies {
-      display: grid;
-      grid-gap: var(--s2);
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 640px) {
-      .technologies {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .technologies {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .tech-card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      padding: var(--s2);
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(10, 20, 40, 0.06);
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      cursor: pointer;
-    }
-
-    @media (min-width: 768px) {
-      .tech-card {
-        padding: var(--s3);
-        border-radius: 20px;
-      }
-    }
-
-    .tech-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .tech-card:nth-child(1) { transition-delay: 0.05s; }
-    .tech-card:nth-child(2) { transition-delay: 0.1s; }
-    .tech-card:nth-child(3) { transition-delay: 0.15s; }
-    .tech-card:nth-child(4) { transition-delay: 0.2s; }
-    .tech-card:nth-child(5) { transition-delay: 0.25s; }
-    .tech-card:nth-child(6) { transition-delay: 0.3s; }
-
-    /* Corner decorative strokes */
-    .tech-card::before, .tech-card::after {
-      content: "";
-      position: absolute;
-      background: var(--gradient);
-      opacity: 0;
-      transition: all 0.35s ease;
-      border-radius: 3px;
-    }
-
-    .tech-card::before {
-      left: 12px;
-      top: 12px;
-      height: 3px;
-      width: 0;
-    }
-
-    .tech-card::after {
-      right: 12px;
-      bottom: 12px;
-      height: 3px;
-      width: 0;
-    }
-
-    .tech-card:hover::before, .tech-card:hover::after {
-      opacity: 1;
-      width: 64px;
-    }
-
-    .tech-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 60px rgba(3, 11, 40, 0.12);
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .tech-card h3 {
-      color: #f1f5f9;
-      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      line-height: 1.3;
-      margin-bottom: var(--s-1);
-      font-family: "Inter", sans-serif;
-    }
-
-    .tech-card p {
-      font-weight: 300;
-      color: #d0d0e0;
-      font-size: clamp(0.875rem, 1.8vw, 1rem);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* Methodology Grid */
-    .method-grid {
-      display: grid;
-      grid-gap: var(--s2);
-      grid-template-columns: 1fr;
-      margin-top: var(--s2);
-    }
-
-    @media (min-width: 640px) {
-      .method-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .method-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .method-card {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      padding: var(--s2);
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(44, 62, 80, 0.08);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    @media (min-width: 768px) {
-      .method-card {
-        padding: var(--s3);
-        border-radius: 20px;
-      }
-    }
-
-    .method-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(var(--color-blue-rgb), 0.15);
-      background: rgba(255, 255, 255, 0.12);
-    }
-
-    .method-card h3 {
-      color: var(--color-blue);
-      font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-      font-weight: 600;
-      margin-bottom: var(--s-1);
-      font-family: "Inter", sans-serif;
-      letter-spacing: -0.01em;
-    }
-
-    .method-card p {
-      color: #d0d0e0;
-      font-weight: 300;
-      font-size: clamp(0.9375rem, 2vw, 1.0625rem);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* Modal Overlay */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--s2);
-      background: rgba(6, 10, 18, 0.75);
-      backdrop-filter: blur(8px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 1200;
-    }
-
-    .overlay.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal {
-      width: min(980px, 96%);
-      max-height: 86vh;
-      overflow: auto;
-      border-radius: 20px;
-      background: rgba(30, 41, 59, 0.95);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 30px 90px rgba(8, 12, 30, 0.36);
-      padding: 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transform: translateY(20px) scale(0.95);
-      transition: transform 0.3s ease, opacity 0.3s;
-    }
-
-    .overlay.open .modal {
-      transform: translateY(0) scale(1);
-    }
-
-    .modal-top {
-      height: 8px;
-      border-radius: 20px 20px 0 0;
-      background: var(--gradient);
-      box-shadow: inset 0 -6px 18px rgba(0, 119, 255, 0.05);
-    }
-
-    .modal-content {
-      padding: var(--s2);
-    }
-
-    @media (min-width: 768px) {
-      .modal-content {
-        padding: var(--s3);
-      }
-    }
-
-    .modal-header {
-      display: flex;
-      gap: var(--s1);
-      align-items: flex-start;
-      margin-bottom: var(--s2);
-    }
-
-    .modal-title {
-      font-weight: 800;
-      color: #f1f5f9;
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      letter-spacing: -0.01em;
-    }
-
-    .modal-sub {
-      color: #d0d0e0;
-      font-size: clamp(0.875rem, 2vw, 1rem);
-      margin-top: var(--s-3);
-      font-weight: 400;
-    }
-
-    .modal-close {
+    .hero p.subtitle {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+      max-width: 800px;
       margin-left: auto;
-      border: none;
-      background: rgba(255, 255, 255, 0.1);
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-size: 18px;
-      color: #f1f5f9;
-      flex-shrink: 0;
-    }
-
-    .modal-close:hover {
-      background: var(--color-accent);
-      color: white;
-      transform: rotate(90deg);
-    }
-
-    .modal-meta {
-      margin-bottom: var(--s1);
+      margin-right: auto;
+      text-align: center; /* Override justify for subtitle */
     }
 
     .chip {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255, 122, 0, 0.1), rgba(0, 119, 255, 0.1));
-      color: #f1f5f9;
+      display: inline-block; 
+      padding: 8px 16px; 
+      background: rgba(255, 255, 255, 0.05); 
+      backdrop-filter: blur(4px);
+      border-radius: 20px; 
+      border: 1px solid rgba(255, 255, 255, 0.1); 
+      color: var(--color-accent); 
+      font-size: 0.9rem; 
       font-weight: 600;
-      font-size: 0.8125rem;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
-      border: 1px solid rgba(0, 119, 255, 0.15);
+      margin-bottom: 24px;
     }
 
-    .modal-body {
-      color: #d0d0e0;
-      font-size: clamp(0.9375rem, 2vw, 1.0625rem);
-      line-height: 1.75;
-      font-weight: 400;
+    /* --- Common Section Styles --- */
+    .section { padding: var(--s3) 0; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+    .section.visible { opacity: 1; transform: translateY(0); }
+    
+    @media (min-width: 768px) {
+      .section { padding: var(--s4) 0; }
     }
 
-    .modal-body p {
-      margin-bottom: var(--s1);
+    .section-header { margin-bottom: var(--s3); text-align: left; border-left: 4px solid var(--color-accent); padding-left: 20px; }
+    .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: white; margin-bottom: 8px; }
+    .section-header p { color: var(--color-text-muted); font-size: 1.1rem; text-align: left; margin: 0; }
+
+    /* --- Abstract Section --- */
+    .abstract-box {
+      background: var(--color-card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--color-card-border);
+      padding: clamp(20px, 5vw, 40px);
+      border-radius: 24px;
     }
 
-    .modal-body p:last-child {
-      margin-bottom: 0;
+    /* --- Stats Grid (Infographic) --- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: var(--s4);
     }
 
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--color-dark) 0%, #0d1117 100%);
-      color: white;
+    .stat-card {
+      background: var(--color-card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--color-card-border);
+      padding: 32px;
+      border-radius: 24px;
       text-align: center;
-      padding: var(--s3);
-      margin-top: var(--s6);
+      transition: transform 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08); }
+
+    .stat-icon { font-size: 2.5rem; color: var(--color-accent); margin-bottom: 16px; display: inline-block; }
+    .stat-value { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: white; line-height: 1; margin-bottom: 8px; }
+    .stat-label { color: var(--color-text-muted); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- Charts Section --- */
+    .chart-container-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    @media (min-width: 900px) {
+      .chart-container-wrapper { grid-template-columns: 1.5fr 1fr; }
     }
 
-    footer p {
-      margin-bottom: 0;
-      font-size: clamp(0.875rem, 1.8vw, 1rem);
+    .chart-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-card-border);
+      border-radius: 24px;
+      padding: 24px;
+      height: 400px; /* Fixed height container */
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
-
-    footer p:first-child {
-      font-weight: 700;
-      margin-bottom: var(--s-2);
-      font-family: "Inter", sans-serif;
+    .chart-card h3 {
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-
-    footer p:last-child {
-      opacity: 0.75;
-      font-size: clamp(0.8125rem, 1.6vw, 0.9375rem);
-      font-weight: 300;
-    }
-
-    /* Floating elements animation */
-    .floating-elements {
-      position: absolute;
+    .chart-canvas-container {
+      flex: 1;
+      position: relative;
       width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -1;
+      min-height: 0; /* Important for flex child */
+    }
+
+    /* --- System Workflow Infographic --- */
+    .workflow-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      padding: clamp(20px, 5vw, 50px);
+      background: rgba(255,255,255,0.02);
+      border-radius: 24px;
+      border: 1px dashed rgba(255,255,255,0.1);
+    }
+
+    .flow-row {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+    }
+
+    .flow-node {
+      background: linear-gradient(180deg, #1e293b, #0f172a);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 24px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 240px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .flow-node:hover { box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); transform: translateY(-3px); }
+
+    .flow-node i { font-size: 2rem; color: var(--color-blue); margin-bottom: 12px; }
+    .flow-node.heat i { color: var(--color-accent); }
+    .flow-node.green i { color: var(--color-green); }
+    .flow-node h4 { color: white; margin-bottom: 6px; font-weight: 600; }
+    .flow-node p { font-size: 0.85rem; color: var(--color-text-muted); text-align: center; margin-bottom: 0; }
+
+    .flow-arrow {
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.2);
+      align-self: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .flow-row { flex-direction: column; align-items: center; gap: 20px; }
+      .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
+      .flow-node { width: 100%; max-width: 100%; }
+    }
+
+    /* --- Tech Grid --- */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .tech-card {
+      background: var(--color-card-bg);
+      border: 1px solid var(--color-card-border);
+      border-radius: 16px;
+      padding: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
+    .tech-card:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateY(-5px);
+      border-color: var(--color-accent);
+    }
+    .tech-card::before {
+      content: ''; position: absolute; top:0; left:0; width: 4px; height: 100%;
+      background: var(--gradient-main); opacity: 0; transition: opacity 0.3s;
+    }
+    .tech-card:hover::before { opacity: 1; }
 
-    .floating-element {
+    .tech-icon-box {
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      color: var(--color-accent);
+      font-size: 1.25rem;
+    }
+    .tech-card p { text-align: left; font-size: 0.95rem; margin-bottom: 0; } /* Left align tech summary for quick scanning */
+
+    /* --- References Section --- */
+    .references-list {
+      list-style-type: none;
+      counter-reset: ref-counter;
+      display: grid;
+      gap: 16px;
+    }
+    
+    .references-list li {
+      counter-increment: ref-counter;
+      position: relative;
+      padding-left: 36px;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      text-align: left;
+    }
+    
+    .references-list li::before {
+      content: "[" counter(ref-counter) "]";
       position: absolute;
-      width: 60px;
-      height: 60px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 50%;
-      animation: float 15s infinite linear;
+      left: 0;
+      top: 0;
+      color: var(--color-accent);
+      font-weight: 600;
     }
 
-    .floating-element:nth-child(1) {
-      top: 10%;
-      left: 10%;
-      width: 80px;
-      height: 80px;
-      animation-duration: 20s;
+    /* --- Modal --- */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.85); 
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+      padding: 20px;
     }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
 
-    .floating-element:nth-child(2) {
-      top: 70%;
-      left: 80%;
-      width: 40px;
-      height: 40px;
-      animation-duration: 15s;
-      animation-delay: 2s;
+    .modal-content {
+      background: #1e293b;
+      width: 100%; max-width: 800px;
+      max-height: 90vh; overflow-y: auto;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: clamp(24px, 5vw, 48px);
+      position: relative;
+      transform: translateY(20px); transition: transform 0.3s;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
     }
+    .modal-overlay.active .modal-content { transform: translateY(0); }
 
-    .floating-element:nth-child(3) {
-      top: 40%;
-      left: 85%;
-      width: 60px;
-      height: 60px;
-      animation-duration: 25s;
-      animation-delay: 5s;
+    .modal-close {
+      position: absolute; top: 20px; right: 20px;
+      background: rgba(255,255,255,0.1); border: none; color: white;
+      width: 36px; height: 36px; border-radius: 50%;
+      font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
     }
+    .modal-close:hover { background: var(--color-accent); }
 
-    @keyframes float {
-      0% {
-        transform: translate(0, 0) rotate(0deg);
-      }
-      25% {
-        transform: translate(20px, 30px) rotate(90deg);
-      }
-      50% {
-        transform: translate(0, 60px) rotate(180deg);
-      }
-      75% {
-        transform: translate(-20px, 30px) rotate(270deg);
-      }
-      100% {
-        transform: translate(0, 0) rotate(360deg);
-      }
+    /* --- Footer --- */
+    footer {
+      background: #020617;
+      padding: 60px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: 60px;
     }
-
-    /* Reveal Animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Mobile Adjustments */
-    @media (max-width: 480px) {
-      .hero {
-        min-height: 100svh;
-      }
-
-      .container {
-        padding: var(--s2);
-      }
-    }
-
-    /* Touch Targets */
-    @media (hover: none) and (pointer: coarse) {
-      .btn, .modal-close {
-        min-height: 44px;
-        min-width: 44px;
-      }
+    
+    /* Responsive text adjustments */
+    @media (max-width: 640px) {
+      .btn { width: 100%; margin-bottom: 10px; }
+      .hero-buttons { display: flex; flex-direction: column; width: 100%; }
     }
   </style>
 </head>
 <body>
-  <div class="floating-elements">
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-    <div class="floating-element"></div>
-  </div>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">HAYTHAM X ONE</h1>
-      <p class="hero-subtitle">A Reliable Energy Nexus for Bangladesh</p>
-      <p class="hero-description">
-        Innovative integrated approach combining Concentrating Solar Power with AI-driven management systems for continuous, dispatchable clean power
-      </p>
-      <a href="#abstract" class="btn">Explore the Project</a>
+    <div class="hero-bg-anim"></div>
+    <div class="container">
+      <div class="chip">
+        <i class="fa-solid fa-bolt"></i> Integrated Renewable Framework
+      </div>
+      <h1>HAYTHAM <span class="text-gradient">X ONE</span></h1>
+      <p class="subtitle">A reliable energy nexus for Bangladesh combining Concentrating Solar Power, AI, and Hybrid Storage Systems.</p>
+      
+      <div class="hero-buttons">
+        <a href="#abstract" class="btn outline" style="margin-right: 10px;"><i class="fa-solid fa-file-lines"></i> Read Abstract</a>
+        <a href="#technologies" class="btn"><i class="fa-solid fa-microchip"></i> Discover Tech</a>
+      </div>
     </div>
-    <div class="scroll-indicator"></div>
   </section>
 
-  <div class="container">
-    <section id="abstract" class="section reveal">
-      <div class="section-head">
-        <h2 class="section-title">Abstract</h2>
+  <!-- Abstract Section -->
+  <section id="abstract" class="container section visible">
+    <div class="section-header">
+      <h2>Abstract</h2>
+      <p>Project Overview & Context</p>
+    </div>
+    <div class="abstract-box">
+      <p>
+        Bangladesh is currently dealing with energy production problems characterized by recurrent load shedding and total reliance on foreign fossil fuel imports. In order to ensure a consistent and dependable supply of electricity constantly, the HAYTHAM X ONE project offers the idea of using an innovative integrated approach that combines cutting-edge Concentrating Solar Power (CSP) technology with effective energy storage systems supervised by Artificial Intelligence (AI) driven management while utilizing Bangladesh's geographic and environmental potential.
+      </p>
+      <p>
+        This approach optimizes operational efficiency and minimizes energy loss, positioning Bangladesh as a green energy leader in the region. The effectiveness of renewable energy sources is largely dependent on favorable weather. To counter this issue, our proposed framework combines CSP, various redundant independent energy storage systems such as Reverse Electrodialysis (RED) batteries and sand thermal storage in response to Bangladesh's energy needs and climate. Additionally, this paper explores the production of hydrogen as a renewable fuel source [1].
+      </p>
+    </div>
+  </section>
+
+  <!-- Key Stats Infographics -->
+  <section class="container section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="stat-icon fa-solid fa-tower-broadcast"></i>
+        <div class="stat-value text-gradient">1000<span style="font-size: 1.5rem">MW</span></div>
+        <div class="stat-label">Total Capacity</div>
+        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">4 Towers x 250MW</p>
       </div>
-      <div class="abstract-card">
-        <p>
-          Bangladesh is currently dealing with energy production problems characterized by recurrent load shedding and total reliance on foreign fossil fuel imports. In order to ensure a consistent and dependable supply of electricity constantly, the HAYTHAM X ONE project offers the idea of using an innovative integrated approach that combines cutting-edge Concentrating Solar Power (CSP) technology with effective energy storage systems supervised by Artificial Intelligence (AI) driven management while utilizing Bangladesh's geographic and environmental potential.
-        </p>
-        <p>
-          This approach optimizes operational efficiency and minimizes energy loss, positioning Bangladesh as a green energy leader in the region. The effectiveness of renewable energy sources is largely dependent on favorable weather. To counter this issue, our proposed framework combines CSP, various redundant independent energy storage systems such as Reverse Electrodialysis (RED) batteries, sand thermal storage and others in response to Bangladesh's energy needs and climate. Additionally, this paper explores the production of hydrogen as a renewable fuel source.
-        </p>
+      <div class="stat-card">
+        <i class="stat-icon fa-solid fa-table-cells"></i>
+        <div class="stat-value" style="color: var(--color-blue)">21,400</div>
+        <div class="stat-label">Heliostats / Tower</div>
+        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">AI-Tracked Mirrors</p>
       </div>
-    </section>
-
-    <section class="section reveal">
-      <div class="stats">
-        <div class="stat-card">
-          <span class="stat-number">1000 MW</span>
-          <span class="stat-label">Power Generation Capacity</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">21,400</span>
-          <span class="stat-label">Heliostats per Tower</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">80%</span>
-          <span class="stat-label">Thermal Storage Efficiency</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-number">1M tons</span>
-          <span class="stat-label">CO₂ Reduction per Year</span>
-        </div>
+      <div class="stat-card">
+        <i class="stat-icon fa-solid fa-temperature-high"></i>
+        <div class="stat-value" style="color: var(--color-accent)">1500°C</div>
+        <div class="stat-label">Peak Temperature</div>
+        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">Molten Salt Receiver</p>
       </div>
-    </section>
-
-    <section id="technologies" class="section reveal">
-      <div class="section-head">
-        <h2 class="section-title">Key Technologies</h2>
+      <div class="stat-card">
+        <i class="stat-icon fa-solid fa-leaf"></i>
+        <div class="stat-value" style="color: var(--color-green)">1M+</div>
+        <div class="stat-label">Tons CO₂ Saved/Yr</div>
+        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">vs Fossil Fuels</p>
       </div>
-      <div class="technologies">
-        <div class="tech-card" data-key="csp" tabindex="0" role="button">
-          <h3>Concentrating Solar Power</h3>
-          <p>Advanced heliostat systems concentrate sunlight onto receivers, generating superheated steam at 1500°C to power turbines. Click to learn more.</p>
-        </div>
+    </div>
+  </section>
 
-        <div class="tech-card" data-key="sand" tabindex="0" role="button">
-          <h3>Sand Thermal Storage</h3>
-          <p>Cost-effective thermal energy storage using readily available sand with 80% efficiency. Single-tank thermocline design for long-duration storage.</p>
-        </div>
+  <!-- Data Visualization Section -->
+  <section id="data-visuals" class="container section">
+    <div class="section-header">
+      <h2>Projected Performance Data</h2>
+      <p>Visualizing efficiency and power distribution based on theoretical frameworks.</p>
+    </div>
 
-        <div class="tech-card" data-key="red" tabindex="0" role="button">
-          <h3>Reverse Electrodialysis</h3>
-          <p>Innovative energy storage utilizing salinity gradients between freshwater and saltwater through ion-exchange membranes.</p>
-        </div>
-
-        <div class="tech-card" data-key="h2" tabindex="0" role="button">
-          <h3>Hydrogen Production</h3>
-          <p>Thermo-Chemical Water Splitting Process produces clean hydrogen fuel using excess thermal energy at 800-1200°C.</p>
-        </div>
-
-        <div class="tech-card" data-key="hfc" tabindex="0" role="button">
-          <h3>Hydrogen Fuel Cells</h3>
-          <p>Proton Exchange Membrane Fuel Cells convert stored hydrogen back into electricity with over 60% efficiency.</p>
-        </div>
-
-        <div class="tech-card" data-key="ai" tabindex="0" role="button">
-          <h3>AI-Driven Management</h3>
-          <p>Reinforcement Learning, Deep Neural Networks, and Predictive Analytics optimize system performance in real-time.</p>
+    <div class="chart-container-wrapper">
+      <!-- Chart 1: Power Contribution -->
+      <div class="chart-card">
+        <h3><i class="fa-solid fa-battery-full"></i> Backup Capacity Potential</h3>
+        <div class="chart-canvas-container">
+          <canvas id="storageChart"></canvas>
         </div>
       </div>
-    </section>
 
-    <section class="section reveal">
-      <div class="section-head">
-        <h2 class="section-title">Methodology</h2>
-      </div>
-      <div class="method-grid">
-        <div class="method-card">
-          <h3>System Integration</h3>
-          <p>Centralized control synchronizes heliostats, PTRs, CSP towers, molten salt and sand storage, RED stacks and hydrogen production for continuous coastal grid power.</p>
-        </div>
-
-        <div class="method-card">
-          <h3>Water Processing</h3>
-          <p>Seawater filtration and Helio-Thermal Brine Separation using Parabolic Trough Reflectors produce freshwater for the process and brine for RED batteries.</p>
-        </div>
-
-        <div class="method-card">
-          <h3>Storage Hierarchy</h3>
-          <p>Primary sand thermocline for long-duration heat. Secondary hydrogen production via TCWSP and RED units for emergency and long-term backup.</p>
-        </div>
-
-        <div class="method-card">
-          <h3>AI Optimization</h3>
-          <p>RL for heliostat tracking, DNNs for forecasting irradiance and demand, predictive analytics to reduce downtime and extend equipment life by 30-50%.</p>
+      <!-- Chart 2: Efficiency Comparison -->
+      <div class="chart-card">
+        <h3><i class="fa-solid fa-gauge-high"></i> Efficiency Metrics</h3>
+        <div class="chart-canvas-container">
+          <canvas id="efficiencyChart"></canvas>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 
+  <!-- System Workflow Infographic -->
+  <section class="container section">
+    <div class="section-header">
+      <h2>System Workflow</h2>
+      <p>The integrated path from seawater to sustainable electricity (Ref. Section 3.1).</p>
+    </div>
+
+    <div class="workflow-wrapper">
+      <!-- Row 1: Intake -->
+      <div class="flow-row">
+        <div class="flow-node">
+          <i class="fa-solid fa-water"></i>
+          <h4>Seawater Intake</h4>
+          <p>Filtered & Pumped</p>
+        </div>
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow-node heat">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <h4>PTR & HTBS</h4>
+          <p>Separates Brine & Freshwater</p>
+        </div>
+      </div>
+
+      <!-- Vertical Arrow -->
+      <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+
+      <!-- Row 2: Generation -->
+      <div class="flow-row">
+        <div class="flow-node heat">
+          <i class="fa-regular fa-sun"></i>
+          <h4>CSP Tower</h4>
+          <p>Concentrates Heat (1500°C)</p>
+        </div>
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow-node">
+          <i class="fa-solid fa-fan"></i>
+          <h4>Steam Turbine</h4>
+          <p>Generates Main Electricity</p>
+        </div>
+        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="flow-node green">
+          <i class="fa-solid fa-network-wired"></i>
+          <h4>National Grid</h4>
+          <p>Dispatchable Power</p>
+        </div>
+      </div>
+
+      <!-- Vertical Arrow Split -->
+      <div style="width: 100%; text-align: center; margin: 10px 0; color: rgba(255,255,255,0.3);">
+        <i class="fa-solid fa-arrow-down-long"></i> <span style="font-size: 0.8rem; margin-left: 10px;">EXCESS ENERGY & BYPRODUCTS</span>
+      </div>
+
+      <!-- Row 3: Storage -->
+      <div class="flow-row">
+        <div class="flow-node">
+          <i class="fa-solid fa-flask"></i>
+          <h4>RED Battery</h4>
+          <p>Uses Brine Gradient</p>
+        </div>
+        <div class="flow-node heat">
+          <i class="fa-solid fa-hourglass-half"></i>
+          <h4>Sand Storage</h4>
+          <p>Thermal Battery (800°C)</p>
+        </div>
+        <div class="flow-node green">
+          <i class="fa-solid fa-atom"></i>
+          <h4>Hydrogen (TCWSP)</h4>
+          <p>Fuel Cell Storage</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies Grid -->
+  <section id="technologies" class="container section">
+    <div class="section-header">
+      <h2>Core Technologies</h2>
+      <p>Click any card to explore the engineering behind the nexus.</p>
+    </div>
+
+    <div class="tech-grid">
+      <!-- CSP -->
+      <div class="tech-card" onclick="openModal('csp')">
+        <div class="tech-icon-box"><i class="fa-regular fa-sun"></i></div>
+        <h3>Concentrating Solar Power</h3>
+        <p>Uses 21,400 heliostats per tower to focus sunlight, achieving temperatures previously unattainable in standard solar setups [2].</p>
+      </div>
+
+      <!-- Sand -->
+      <div class="tech-card" onclick="openModal('sand')">
+        <div class="tech-icon-box"><i class="fa-solid fa-hourglass"></i></div>
+        <h3>Sand Thermal Storage</h3>
+        <p>A cost-effective single-tank thermocline system using silica sand to store heat at 80% efficiency for night deployment [4][5].</p>
+      </div>
+
+      <!-- RED -->
+      <div class="tech-card" onclick="openModal('red')">
+        <div class="tech-icon-box"><i class="fa-solid fa-battery-bolt"></i></div>
+        <h3>Reverse Electrodialysis</h3>
+        <p>Generates power from the salinity difference between freshwater and brine, acting as a robust emergency backup [6].</p>
+      </div>
+
+      <!-- Hydrogen -->
+      <div class="tech-card" onclick="openModal('h2')">
+        <div class="tech-icon-box"><i class="fa-solid fa-atom"></i></div>
+        <h3>Hydrogen Production</h3>
+        <p>Thermo-Chemical Water Splitting (TCWSP) uses excess heat (800-1200°C) to split water into clean hydrogen fuel [10].</p>
+      </div>
+
+      <!-- Fuel Cells -->
+      <div class="tech-card" onclick="openModal('hfc')">
+        <div class="tech-icon-box"><i class="fa-solid fa-charging-station"></i></div>
+        <h3>Hydrogen Fuel Cells</h3>
+        <p>PEMFC units convert stored hydrogen back to electricity with >60% efficiency, producing only water as a byproduct.</p>
+      </div>
+
+      <!-- AI -->
+      <div class="tech-card" onclick="openModal('ai')">
+        <div class="tech-icon-box"><i class="fa-solid fa-brain"></i></div>
+        <h3>AI Management</h3>
+        <p>Reinforcement Learning optimizes heliostat angles while Neural Networks predict weather patterns to balance load [13].</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- References Section -->
+  <section id="references" class="container section">
+    <div class="section-header">
+      <h2>References</h2>
+      <p>Scientific sources and literature cited in the research paper.</p>
+    </div>
+    <div class="abstract-box">
+      <ul class="references-list">
+        <li>Behar, O., Khellaf, A., & Mohammedi, K. (2013). A review of studies on central receiver solar thermal power plants. Renewable and Sustainable Energy Reviews, 23, 12-39.</li>
+        <li>Singh, S., & Singh, A. (2017). Performance analysis of concentrated solar power and photovoltaic system: A case study of India. Energy, 134, 920-931.</li>
+        <li>Yu, Z., Wang, J., & Gao, M. (2017). Performance and cost analysis of parabolic trough solar power plants based on a novel multi-effect design. Energy Conversion and Management, 153, 616-625.</li>
+        <li>Ho, C., & Kolb, B. (2014). A review of high-temperature central receiver designs for concentrating solar power. Renewable and Sustainable Energy Reviews, 29, 835-846.</li>
+        <li>Kearney, A., Torres, J. P., & Tellez, D. (2010). Parabolic trough solar technology: Current status and future trends. Journal of Solar Energy Engineering, 132(4).</li>
+        <li>Calise, F., & Vanoli, L. (2020). Hybrid solar power plants: Renewable energy integration in concentrated solar power systems. Journal of Cleaner Production, 267, 121983.</li>
+        <li>Lilliestam, J., & Pitz-Paal, R. (2018). Concentrating solar power for less than USD 0.07 per kWh: Finally the breakthrough? Renewable Energy Focus, 26, 17-21.</li>
+        <li>Sgobba, F., & Babini, A. (2021). Hydrogen production from CSP plants: Integration of electrolysis in solar towers. International Journal of Hydrogen Energy, 46(8), 6195-6206.</li>
+        <li>Zhang, L., Zhao, X., & Wang, R. (2019). High-temperature electrolysis for hydrogen production from renewable energy systems. Journal of Power Sources, 438, 227008.</li>
+        <li>Abanades, S., & Flamant, G. (2006). Hydrogen production from solar thermochemical water splitting. Energy Conversion and Management, 47(3), 287-329.</li>
+        <li>Sustainable and Renewable Energy Development Authority (SREDA). (2016). Power System Master Plan 2016.</li>
+        <li>International Renewable Energy Agency (IRENA). (2018). Renewable Power Generation Costs in 2017. IRENA.</li>
+        <li>Jardine, A., Lin, D., & Banjevic, D. (2006). A review on machinery diagnostics and prognostics implementing condition-based maintenance. Mechanical Systems and Signal Processing, 20(7), 1483-1510.</li>
+        <li>Zahran, E., & Dabous, S. (2020). Wind resistance and structural stability in solar plant design. International Journal of Structural Engineering, 12(2), 134-150.</li>
+        <li>International Energy Agency (IEA). (2019). The Role of Renewables in Reducing CO2 Emissions. IEA.</li>
+        <li>Lattemann, S., & Höpner, T. (2008). Environmental impact and impact assessment of seawater desalination. Desalination, 220(1-3), 1-15.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>2024 HAYTHAM X ONE Research Project</p>
-    <p>A Comprehensive Approach to Renewable Energy for Bangladesh</p>
+    <div class="container">
+      <h3 style="color: white; margin-bottom: 10px;">HAYTHAM X ONE</h3>
+      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+        Research Project: Renewable Energy Nexus for Bangladesh.<br>
+        Data derived from theoretical framework and simulation models (2024).
+      </p>
+      <div style="font-size: 1.2rem; color: var(--color-text-muted);">
+        <i class="fa-brands fa-github" style="margin: 0 10px; cursor: pointer;"></i>
+        <i class="fa-brands fa-researchgate" style="margin: 0 10px; cursor: pointer;"></i>
+        <i class="fa-solid fa-envelope" style="margin: 0 10px; cursor: pointer;"></i>
+      </div>
+    </div>
   </footer>
 
-  <div id="overlay" class="overlay" role="dialog" aria-hidden="true" aria-modal="true">
-    <div class="modal" role="document">
-      <div class="modal-top"></div>
-      <div class="modal-content">
-        <div class="modal-header">
-          <div style="flex: 1;">
-            <div id="modalTitle" class="modal-title">Title</div>
-            <div id="modalSub" class="modal-sub">Subtitle</div>
-          </div>
-          <button id="closeBtn" class="modal-close" aria-label="Close">✕</button>
-        </div>
-        <div id="modalMeta" class="modal-meta"></div>
-        <div id="modalBody" class="modal-body"></div>
+  <!-- Modal Structure -->
+  <div id="modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div id="modal-body-content">
+        <!-- Content injected via JS -->
       </div>
     </div>
   </div>
 
   <script>
-    // Modal Content
-    const content = {
+    // --- Intersection Observer for Scroll Animations ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+
+    // --- Chart.js Configuration ---
+    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.font.family = 'Inter';
+
+    // Chart 1: Backup Storage Capacity (Data from Table 1)
+    const ctxStorage = document.getElementById('storageChart').getContext('2d');
+    new Chart(ctxStorage, {
+      type: 'doughnut',
+      data: {
+        labels: ['Sand Storage (Primary)', 'Hydrogen Fuel Cell', 'RED Battery'],
+        datasets: [{
+          data: [1190.6, 568.8, 525], 
+          backgroundColor: ['#f97316', '#3b82f6', '#10b981'],
+          borderWidth: 0,
+          hoverOffset: 10
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 20 } },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return ` ${context.label}: ${context.raw} MW Output`;
+              }
+            }
+          }
+        },
+        layout: { padding: 10 }
+      }
+    });
+
+    // Chart 2: Efficiency Comparison
+    const ctxEff = document.getElementById('efficiencyChart').getContext('2d');
+    new Chart(ctxEff, {
+      type: 'bar',
+      data: {
+        labels: ['Sand Storage', 'HFC Conversion', 'Steam Turbine', 'RED System'],
+        datasets: [{
+          label: 'Thermal/Energy Efficiency (%)',
+          data: [80, 60, 45, 35], 
+          backgroundColor: 'rgba(59, 130, 246, 0.6)',
+          borderColor: '#3b82f6',
+          borderWidth: 1,
+          borderRadius: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: { 
+            beginAtZero: true, 
+            grid: { color: 'rgba(255,255,255,0.05)' },
+            max: 100
+          },
+          x: { grid: { display: false } }
+        },
+        plugins: {
+          legend: { display: false }
+        }
+      }
+    });
+
+    // --- Modal Logic ---
+    const modalData = {
       csp: {
         title: "Concentrating Solar Power (CSP)",
-        sub: "Heliostats, PTR, molten-salt receiver",
-        meta: ["Section 2.1 — 2.3", "Primary Power Generation"],
-        body: `CSP tower systems use arrays of heliostats (mirrors that track the sun) to concentrate sunlight onto a central receiver where very high temperatures are produced and converted into steam that drives turbines to generate electricity. Parabolic Trough Reflectors (PTR) are also used in the project for Helio-Thermal Brine Separation (HTBS).
-
-Molten salt (40% Sodium Nitrate / 60% Potassium Nitrate) is used as the primary heat-transfer fluid in the receiver to enable continuous and stable heat capture and storage. The system achieves temperatures of 1500°C, driving Siemens SST-700/900 Series turbines with 45% thermal efficiency.
-
-The heliostat tracking strategy combines a coarse coordinate-based alignment (solar azimuth and elevation) with a fine-feedback layer using LDR sensors to keep reflection precision within tenths or hundredths of a degree. Structural and aerodynamic enhancements including GFRP frames, aluminum honeycomb backing, and optimized profiles reduce wind loads and increase reliability and lifespan.`
+        content: `
+          <h3 class="text-gradient">Power Generation Core</h3>
+          <p>CSP tower systems use arrays of heliostats (mirrors that track the sun) to concentrate sunlight onto a central receiver. In the HAYTHAM X ONE project:</p>
+          <ul style="margin: 0 0 20px 20px; color: #cbd5e1; list-style-type: disc;">
+             <li><strong>21,400 Heliostats</strong> per tower ensure maximum solar flux [Section 4.1].</li>
+             <li><strong>1500°C Temperature</strong> is achieved using Molten Salt (40% Sodium Nitrate / 60% Potassium Nitrate) as the heat transfer fluid.</li>
+             <li><strong>Steam Turbines</strong> (Siemens SST-700/900 Series) convert this heat to electricity with approximately 45% thermal efficiency [Section 3.5].</li>
+          </ul>
+          <p>This allows for power generation efficiency significantly higher than traditional PV cells in tropical climates, addressing the need for stable renewable baseload power.</p>`
       },
-
       sand: {
-        title: "Sand Thermal Storage (Primary)",
-        sub: "Single-tank thermocline with silica sand",
-        meta: ["Section 2.2, 3.5", "1,190.6 MW Backup Capacity"],
-        body: `Sand storage is proposed as the primary long-duration thermal battery using a single-tank thermocline design. Hot heat-transfer fluid enters and drives the thermocline downward during charging; reversing the flow extracts heat for power production.
-
-Silica sand provides thermal stratification and stable long-term storage at 800°C. Experimental and literature evidence indicates sand-based systems can reach approximately 80% effective thermal storage efficiency, offering a cost-effective alternative to molten salts for large-scale deployment.
-
-This system stores excess heat during peak sunlight hours and releases it during periods of low solar irradiation, ensuring continuous power generation throughout the day and night. The single-tank design reduces infrastructure costs while maintaining high efficiency.`
+        title: "Sand Thermal Storage",
+        content: `
+          <h3 class="text-gradient" style="color: var(--color-accent)">Primary Storage Medium</h3>
+          <p>To solve the issue of night-time energy needs, the project utilizes a <strong>Single-Tank Thermocline System</strong> with silica sand [Section 2.2].</p>
+          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin: 20px 0;">
+            <p style="margin-bottom: 5px;"><i class="fa-solid fa-check-circle" style="color: var(--color-green)"></i> <strong>80% Thermal Efficiency</strong></p>
+            <p style="margin-bottom: 5px;"><i class="fa-solid fa-check-circle" style="color: var(--color-green)"></i> <strong>Low Cost</strong> compared to Lithium-ion or pure Molten Salt.</p>
+            <p style="margin-bottom: 0;"><i class="fa-solid fa-check-circle" style="color: var(--color-green)"></i> <strong>1,190.6 MW</strong> potential output capacity [Table 1].</p>
+          </div>
+          <p>Hot fluid enters the top, driving a temperature gradient downward. Reversing flow extracts heat for steam generation at night. This utilizes non-construction grade sand, making it highly viable for Bangladesh.</p>`
       },
-
       red: {
-        title: "Reverse Electrodialysis (RED) Battery",
-        sub: "Salinity-gradient energy storage",
-        meta: ["Section 2.3, 3.4", "525 MW Emergency Storage"],
-        body: `Reverse Electrodialysis (RED) exploits the salinity gradient between high-salinity brine and lower-salinity seawater across ion-exchange membranes (IEMs). Alternating chambers of brine and seawater produce an ionic current that is harvested as electrical energy by electrodes.
-
-In HAYTHAM X ONE, HTBS supplies brine and seawater feeds; RED units act as long-term backup storage, particularly well-suited for coastal locations with abundant seawater access. The system uses 10,000 ion-exchange membranes to deliver 525 MW for extreme conditions.
-
-RED is intended as a backup complement to thermal storage rather than the primary daily storage medium, providing reliable emergency power during extended periods of low solar irradiation or extreme weather conditions.`
+        title: "Reverse Electrodialysis (RED)",
+        content: `
+          <h3 class="text-gradient" style="color: var(--color-blue)">Salinity Gradient Power</h3>
+          <p>Located in coastal regions, this system exploits the difference between freshwater (from the project's desalination units) and brine (residue) [Section 2.3].</p>
+          <p><strong>Mechanism:</strong> Ions move through 10,000 selective membranes, creating an electric potential from the chemical potential difference.</p>
+          <p><strong>Role:</strong> Acts as a long-duration emergency backup (525 MW capacity) for extreme weather conditions when solar irradiance is negligible for days.</p>`
       },
-
       h2: {
         title: "Hydrogen Production (TCWSP)",
-        sub: "Thermo-Chemical Water Splitting Process",
-        meta: ["Section 2.4, 3.5", "Clean Hydrogen Fuel"],
-        body: `The Thermo-Chemical Water Splitting Process (TCWSP) uses high-temperature chemical cycles to split water into hydrogen and oxygen using heat energy typically ranging from 800 to 1200°C. Integrated with CSP, the process uses excess thermal energy to drive multi-step redox reactions with recyclable reactants such as acid and iodine cycles.
-
-Only water feedstock is consumed in the process, making it completely sustainable. Produced hydrogen is compressed or liquefied and stored for later use in fuel cells or for export, enabling long-duration energy storage beyond daily cycles.
-
-This technology creates export opportunities in the growing global green hydrogen market while providing flexible long-term energy storage that complements the daily cycle of sand thermal storage.`
+        content: `
+          <h3 class="text-gradient">Thermo-Chemical Water Splitting</h3>
+          <p>Instead of expensive electrolysis, this project uses excess thermal energy (Heat) to split water [Section 2.4].</p>
+          <ul style="margin: 0 0 20px 20px; color: #cbd5e1; list-style-type: disc;">
+             <li>Operates at <strong>800°C - 1200°C</strong>.</li>
+             <li>Uses Iodine-Sulfur cycles to chemically separate Hydrogen and Oxygen.</li>
+             <li><strong>Zero Emissions:</strong> The only input is water and heat; the only output is Hydrogen and Oxygen.</li>
+          </ul>
+          <p>This creates an export opportunity for green hydrogen while securing domestic energy independence.</p>`
       },
-
       hfc: {
-        title: "Hydrogen Fuel Cells (PEMFC)",
-        sub: "Dispatchable electricity from hydrogen",
-        meta: ["Section 2.5, 3.6", "568.8 MW Secondary Backup"],
-        body: `Proton Exchange Membrane Fuel Cells (PEMFCs) convert stored hydrogen into electricity with over 60% efficiency, producing only water as a byproduct. PEMFCs operate at relatively low temperatures and are suitable for stationary, portable and transport applications.
-
-In HAYTHAM X ONE they serve as a secondary backup providing 568.8 MW during extended low-irradiation periods. Stored hydrogen from TCWSP is fed to fuel cells to generate electricity during nighttime, low-sun periods or peak demand situations.
-
-The system provides stable, dispatchable power that can be quickly ramped up or down based on grid demand, offering flexibility that complements the baseload power from CSP and thermal storage.`
+        title: "Hydrogen Fuel Cells",
+        content: `
+          <h3 class="text-gradient">Secondary Backup</h3>
+          <p>Stored hydrogen from the TCWSP is fed into Proton Exchange Membrane Fuel Cells (PEMFC) [Section 2.5].</p>
+          <p>These cells have an efficiency of over <strong>60%</strong> and provide a dispatchable load of <strong>568.8 MW</strong>. This creates a circular economy where excess daytime heat becomes night-time electricity or exportable green fuel. The only byproduct is pure water, which is recycled back into the system.</p>`
       },
-
       ai: {
-        title: "AI Management & Optimization",
-        sub: "RL, DNN forecasting, predictive maintenance",
-        meta: ["Section 2.6, 3.8", "Real-Time Optimization"],
-        body: `The AI management system combines Reinforcement Learning (RL) for real-time heliostat positioning, Deep Neural Networks (DNNs) for irradiance and demand forecasting, and predictive analytics for maintenance scheduling.
-
-RL can adapt to environmental variability, increasing capture efficiency by continuously optimizing the 21,400 heliostats per tower. DNNs help optimally schedule storage, hydrogen production and grid dispatch based on weather patterns and demand predictions.
-
-Predictive maintenance reduces unexpected downtime by 30-50% and extends equipment life through proactive identification of potential failures. The system monitors solar irradiance, ambient temperature, weather conditions, and system health to maximize overall plant efficiency and reliability.`
+        title: "AI Management System",
+        content: `
+          <h3 class="text-gradient">The Digital Brain</h3>
+          <p>The entire nexus is governed by a multi-layered AI system [Section 2.6]:</p>
+          <ul style="margin: 0 0 20px 20px; color: #cbd5e1; list-style-type: disc;">
+             <li><strong>Reinforcement Learning (RL):</strong> Adjusts 21,400 mirrors in real-time to track the sun with < 0.1° error, adapting to wind and cloud cover.</li>
+             <li><strong>Deep Neural Networks (DNN):</strong> Predicts cloud cover and energy demand to switch between Storage and Grid modes.</li>
+             <li><strong>Predictive Maintenance:</strong> Reduces downtime by 30-50% by detecting turbine vibration anomalies before failure.</li>
+          </ul>`
       }
     };
 
-    // Modal Controls
-    const overlay = document.getElementById('overlay');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalSub = document.getElementById('modalSub');
-    const modalBody = document.getElementById('modalBody');
-    const modalMeta = document.getElementById('modalMeta');
-    const closeBtn = document.getElementById('closeBtn');
-
     function openModal(key) {
-      const d = content[key];
-      if (!d) return;
+      const data = modalData[key];
+      const modal = document.getElementById('modal');
+      const contentDiv = document.getElementById('modal-body-content');
       
-      modalTitle.textContent = d.title;
-      modalSub.textContent = d.sub;
-      modalMeta.innerHTML = d.meta.map(m => `<span class="chip">${m}</span>`).join('');
-      modalBody.innerHTML = d.body.split('\n\n').map(p => `<p>${p}</p>`).join('');
+      contentDiv.innerHTML = `
+        <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 10px;">${data.title}</h2>
+        <div style="width: 60px; height: 4px; background: var(--gradient-main); margin-bottom: 24px; border-radius: 2px;"></div>
+        <div style="font-size: 1.05rem; line-height: 1.8;">${data.content}</div>
+      `;
       
-      overlay.classList.add('open');
-      overlay.setAttribute('aria-hidden', 'false');
+      modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
-      overlay.classList.remove('open');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      document.getElementById('modal').classList.remove('active');
+      document.body.style.overflow = 'auto';
     }
 
-    // Wire tech cards
-    document.querySelectorAll('[data-key]').forEach(card => {
-      const key = card.getAttribute('data-key');
-      card.addEventListener('click', () => openModal(key));
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openModal(key);
-        }
-      });
+    // Close on outside click
+    document.getElementById('modal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modal')) closeModal();
     });
-
-    // Close handlers
-    closeBtn.addEventListener('click', closeModal);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closeModal();
-    });
+    
+    // Esc key close
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
+      if(e.key === "Escape") closeModal();
     });
 
-    // Smooth scroll for hero button
-    document.querySelector('a[href="#abstract"]').addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById('abstract').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
-    // Scroll indicator
-    document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
-      document.getElementById('abstract')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-
-    // Intersection Observer for reveal animations
-    const revealOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          
-          // Trigger tech cards animation
-          if (entry.target.querySelector('.technologies')) {
-            setTimeout(() => {
-              entry.target.querySelectorAll('.tech-card').forEach(card => {
-                card.classList.add('visible');
-              });
-            }, 100);
-          }
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, revealOptions);
-
-    // Observe all reveal sections
-    document.querySelectorAll('.reveal').forEach(section => {
-      revealObserver.observe(section);
-    });
-
-    // Observe technology section specifically
-    const techSection = document.querySelector('.technologies')?.closest('section');
-    if (techSection && !techSection.classList.contains('reveal')) {
-      techSection.classList.add('reveal');
-      revealObserver.observe(techSection);
-    }
-
-    // Add random floating elements
-    const floatingContainer = document.querySelector('.floating-elements');
-    for (let i = 0; i < 5; i++) {
-      const element = document.createElement('div');
-      element.classList.add('floating-element');
-      element.style.left = `${Math.random() * 100}%`;
-      element.style.top = `${Math.random() * 100}%`;
-      element.style.width = `${30 + Math.random() * 70}px`;
-      element.style.height = element.style.width;
-      element.style.animationDuration = `${15 + Math.random() * 20}s`;
-      element.style.animationDelay = `${Math.random() * 10}s`;
-      element.style.background = `rgba(255, 255, 255, ${0.02 + Math.random() * 0.06})`;
-      floatingContainer.appendChild(element);
-    }
   </script>
 </body>
 </html>
