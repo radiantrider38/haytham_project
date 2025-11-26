@@ -3,862 +3,501 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HAYTHAM X ONE | Reliable Energy Nexus</title>
-  <meta name="description" content="A comprehensive approach to renewable energy for Bangladesh combining CSP, AI, and Hybrid Storage.">
+  <title>Research Portfolio | Soil • Water • Energy</title>
+  <meta name="description" content="A centralized hub for sustainable development research projects by Razin Saleh.">
   
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
-  <link rel='stylesheet' href='https://rsms.me/inter/inter.css'>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Charts -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     :root {
-      /* Color Palette */
-      --color-primary: #0f172a;       /* Dark Slate */
-      --color-secondary: #1e293b;     /* Lighter Slate */
-      --color-accent: #f97316;        /* Solar Orange */
-      --color-blue: #3b82f6;          /* Water/Tech Blue */
-      --color-green: #10b981;         /* Eco Green */
-      --color-text-main: #f1f5f9;
-      --color-text-muted: #94a3b8;
+      --bg-color: #020617;
+      --text-color: #f8fafc;
+      --text-muted: #94a3b8;
       
-      --color-card-bg: rgba(255, 255, 255, 0.04);
-      --color-card-border: rgba(255, 255, 255, 0.08);
+      /* Theme Colors */
+      --soil-color: #10b981;   /* Emerald Green */
+      --water-color: #0ea5e9;  /* Sky Blue */
+      --energy-color: #f59e0b; /* Amber/Orange */
       
-      --gradient-main: linear-gradient(135deg, var(--color-accent), var(--color-blue));
-      
-      /* Spacing */
-      --s-1: 0.5rem;
-      --s1: 1rem;
-      --s2: 2rem;
-      --s3: 3rem;
-      --s4: 5rem;
-      --s5: 8rem;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+      --font-display: "Space Grotesk", sans-serif;
+      --font-body: "Inter", sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Space Grotesk", "Inter", sans-serif;
-      background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #17153B 100%);
-      color: var(--color-text-main);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      min-height: 100vh;
       overflow-x: hidden;
-      line-height: 1.7; /* Improved readability */
-      font-size: 16px;
+      position: relative;
     }
 
-    /* --- Typography & Utilities --- */
-    h1, h2, h3, h4 { 
-      font-family: "Inter", sans-serif; 
-      letter-spacing: -0.02em; 
-      line-height: 1.2;
+    /* --- Top Exclusive Bar --- */
+    .exclusive-bar {
+      background: linear-gradient(90deg, #0f172a, #1e293b, #0f172a);
+      color: var(--text-muted);
+      font-family: var(--font-display);
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border-bottom: var(--glass-border);
+      position: relative;
+      z-index: 101;
     }
-    
-    p {
-      text-align: justify; /* Justified text as requested */
-      text-justify: inter-word;
-      margin-bottom: 1.25rem;
-      color: #cbd5e1;
-    }
-
-    .text-gradient {
-      background: var(--gradient-main);
+    .exclusive-bar span {
+      background: linear-gradient(to right, var(--soil-color), var(--water-color), var(--energy-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
+      font-weight: 700;
     }
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 24px;
+    /* --- Scroll Progress --- */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; width: 0%; height: 2px;
+      background: linear-gradient(90deg, var(--soil-color), var(--water-color), var(--energy-color));
+      z-index: 1002;
+      transition: width 0.1s;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 16px 32px;
-      background: var(--gradient-main);
+    /* --- Background & Parallax --- */
+    .parallax-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.25;
+      animation: float 25s infinite ease-in-out;
+    }
+
+    .orb-1 { width: 600px; height: 600px; background: var(--soil-color); top: -20%; left: -10%; animation-delay: 0s; }
+    .orb-2 { width: 500px; height: 500px; background: var(--water-color); top: 30%; right: -10%; animation-delay: -5s; }
+    .orb-3 { width: 550px; height: 550px; background: var(--energy-color); bottom: -20%; left: 20%; animation-delay: -10s; }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(40px, 60px); }
+    }
+
+    /* Grid Overlay */
+    .grid-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    }
+
+    /* --- Navigation --- */
+    nav {
+      position: sticky; top: 0; width: 100%; z-index: 100;
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      backdrop-filter: blur(16px);
+      border-bottom: var(--glass-border);
+      background: rgba(2, 6, 23, 0.7);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
       color: white;
       text-decoration: none;
-      border-radius: 50px;
-      font-weight: 700;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-      border: 1px solid rgba(255,255,255,0.1);
-      font-size: 1rem;
+      letter-spacing: 2px;
+      display: flex; align-items: center; gap: 0.5rem;
     }
-    .btn:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(249, 115, 22, 0.4); }
-    
-    .btn.outline {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: none;
+
+    .nav-links { display: flex; gap: 2rem; }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s;
+      position: relative;
+      font-family: var(--font-display);
     }
-    .btn.outline:hover {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: white;
-    }
+    .nav-link:hover { color: white; }
+
+    .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
     /* --- Hero Section --- */
     .hero {
-      min-height: 100vh;
+      min-height: 85vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
+      align-items: center;
       text-align: center;
-      padding: 100px 20px;
-    }
-
-    .hero-bg-anim {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: 
-        radial-gradient(circle at 15% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 25%);
-      z-index: -1;
+      padding: 6rem 2rem;
+      position: relative;
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 9vw, 6rem);
       font-weight: 800;
-      margin-bottom: 24px;
-    }
-
-    .hero p.subtitle {
-      font-size: clamp(1.1rem, 3vw, 1.5rem);
-      color: var(--color-text-muted);
-      margin-bottom: 40px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center; /* Override justify for subtitle */
-    }
-
-    .chip {
-      display: inline-block; 
-      padding: 8px 16px; 
-      background: rgba(255, 255, 255, 0.05); 
-      backdrop-filter: blur(4px);
-      border-radius: 20px; 
-      border: 1px solid rgba(255, 255, 255, 0.1); 
-      color: var(--color-accent); 
-      font-size: 0.9rem; 
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    /* --- Common Section Styles --- */
-    .section { padding: var(--s3) 0; opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-    .section.visible { opacity: 1; transform: translateY(0); }
-    
-    @media (min-width: 768px) {
-      .section { padding: var(--s4) 0; }
-    }
-
-    .section-header { margin-bottom: var(--s3); text-align: left; border-left: 4px solid var(--color-accent); padding-left: 20px; }
-    .section-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; color: white; margin-bottom: 8px; }
-    .section-header p { color: var(--color-text-muted); font-size: 1.1rem; text-align: left; margin: 0; }
-
-    /* --- Abstract Section --- */
-    .abstract-box {
-      background: var(--color-card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--color-card-border);
-      padding: clamp(20px, 5vw, 40px);
-      border-radius: 24px;
-    }
-
-    /* --- Stats Grid (Infographic) --- */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-bottom: var(--s4);
-    }
-
-    .stat-card {
-      background: var(--color-card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--color-card-border);
-      padding: 32px;
-      border-radius: 24px;
-      text-align: center;
-      transition: transform 0.3s;
-    }
-    .stat-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08); }
-
-    .stat-icon { font-size: 2.5rem; color: var(--color-accent); margin-bottom: 16px; display: inline-block; }
-    .stat-value { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: white; line-height: 1; margin-bottom: 8px; }
-    .stat-label { color: var(--color-text-muted); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
-
-    /* --- Charts Section --- */
-    .chart-container-wrapper {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-    @media (min-width: 900px) {
-      .chart-container-wrapper { grid-template-columns: 1.5fr 1fr; }
-    }
-
-    .chart-card {
-      background: var(--color-card-bg);
-      border: 1px solid var(--color-card-border);
-      border-radius: 24px;
-      padding: 24px;
-      height: 400px; /* Fixed height container */
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-    .chart-card h3 {
-      font-size: 1.25rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
       color: white;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      animation: fadeInUp 0.8s ease-out;
     }
-    .chart-canvas-container {
-      flex: 1;
-      position: relative;
-      width: 100%;
-      min-height: 0; /* Important for flex child */
+    
+    .hero h1 span {
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* --- System Workflow Infographic --- */
-    .workflow-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-      padding: clamp(20px, 5vw, 50px);
-      background: rgba(255,255,255,0.02);
-      border-radius: 24px;
-      border: 1px dashed rgba(255,255,255,0.1);
+    .hero p {
+      font-size: clamp(1.1rem, 2vw, 1.25rem);
+      color: var(--text-muted);
+      max-width: 700px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease-out 0.2s backwards;
+      line-height: 1.7;
     }
 
-    .flow-row {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
-      position: relative;
-      width: 100%;
+    .hero-btns {
+      display: flex; gap: 1rem;
+      animation: fadeInUp 0.8s ease-out 0.4s backwards;
     }
 
-    .flow-node {
-      background: linear-gradient(180deg, #1e293b, #0f172a);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      padding: 24px;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 240px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      transition: all 0.3s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    .btn {
+      padding: 1rem 2.5rem; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-family: var(--font-display);
+      transition: all 0.3s; border: 1px solid transparent;
+      text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;
     }
-    .flow-node:hover { box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); transform: translateY(-3px); }
+    .btn-primary {
+      background: white; color: #020617;
+    }
+    .btn-primary:hover { background: #e2e8f0; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,255,255,0.15); }
+    
+    .btn-outline {
+      border-color: rgba(255,255,255,0.2); color: white; background: rgba(255,255,255,0.02);
+    }
+    .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
 
-    .flow-node i { font-size: 2rem; color: var(--color-blue); margin-bottom: 12px; }
-    .flow-node.heat i { color: var(--color-accent); }
-    .flow-node.green i { color: var(--color-green); }
-    .flow-node h4 { color: white; margin-bottom: 6px; font-weight: 600; }
-    .flow-node p { font-size: 0.85rem; color: var(--color-text-muted); text-align: center; margin-bottom: 0; }
-
-    .flow-arrow {
-      font-size: 1.5rem;
-      color: rgba(255,255,255,0.2);
-      align-self: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .scroll-indicator {
+      position: absolute; bottom: 3rem;
+      animation: bounce 2s infinite;
+      color: var(--text-muted);
+      font-size: 1.2rem; opacity: 0.7;
     }
 
-    @media (max-width: 768px) {
-      .flow-row { flex-direction: column; align-items: center; gap: 20px; }
-      .flow-arrow { transform: rotate(90deg); margin: 10px 0; }
-      .flow-node { width: 100%; max-width: 100%; }
+    /* --- Projects Section --- */
+    .projects-section {
+      padding: 4rem 2rem 8rem;
+      max-width: 1300px;
+      margin: 0 auto;
     }
 
-    /* --- Tech Grid --- */
-    .tech-grid {
+    .section-header {
+      text-align: center; margin-bottom: 5rem;
+    }
+    .section-header h2 {
+      font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem; color: white;
+    }
+    .section-header p { color: var(--text-muted); max-width: 500px; margin: 0 auto; }
+
+    .grid-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 3rem;
     }
 
-    .tech-card {
-      background: var(--color-card-bg);
-      border: 1px solid var(--color-card-border);
-      border-radius: 16px;
-      padding: 30px;
-      cursor: pointer;
-      transition: all 0.3s;
+    /* 3D Card Styles */
+    .card-wrapper { perspective: 1500px; }
+
+    .project-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      border: var(--glass-border);
+      border-radius: 24px;
+      padding: 3rem 2rem;
+      text-decoration: none;
+      color: white;
       position: relative;
       overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s;
       display: flex;
       flex-direction: column;
+      height: 100%;
+      animation: fadeInUp 0.8s ease-out backwards;
     }
-    .tech-card:hover {
-      background: rgba(255,255,255,0.08);
-      transform: translateY(-5px);
-      border-color: var(--color-accent);
-    }
-    .tech-card::before {
-      content: ''; position: absolute; top:0; left:0; width: 4px; height: 100%;
-      background: var(--gradient-main); opacity: 0; transition: opacity 0.3s;
-    }
-    .tech-card:hover::before { opacity: 1; }
 
-    .tech-icon-box {
-      width: 48px; height: 48px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-      color: var(--color-accent);
-      font-size: 1.25rem;
+    /* Hover Interaction */
+    .card-wrapper:hover .project-card {
+      transform: translateY(-15px) rotateX(5deg);
     }
-    .tech-card p { text-align: left; font-size: 0.95rem; margin-bottom: 0; } /* Left align tech summary for quick scanning */
 
-    /* --- References Section --- */
-    .references-list {
-      list-style-type: none;
-      counter-reset: ref-counter;
-      display: grid;
-      gap: 16px;
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, currentColor, transparent);
+      opacity: 0; transition: opacity 0.3s;
     }
+    .project-card:hover::before { opacity: 1; }
+
+    /* Theme-Specific Shadows & Colors */
+    .project-card[data-theme="soil"] { color: var(--soil-color); }
+    .project-card[data-theme="soil"]:hover { box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.2); }
     
-    .references-list li {
-      counter-increment: ref-counter;
-      position: relative;
-      padding-left: 36px;
-      font-size: 0.9rem;
-      color: var(--color-text-muted);
-      text-align: left;
-    }
+    .project-card[data-theme="water"] { color: var(--water-color); }
+    .project-card[data-theme="water"]:hover { box-shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.2); }
     
-    .references-list li::before {
-      content: "[" counter(ref-counter) "]";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--color-accent);
-      font-weight: 600;
+    .project-card[data-theme="energy"] { color: var(--energy-color); }
+    .project-card[data-theme="energy"]:hover { box-shadow: 0 25px 50px -12px rgba(245, 158, 11, 0.2); }
+
+    /* Inner Card Content */
+    .card-icon {
+      font-size: 3.5rem; margin-bottom: 2rem;
+      transition: transform 0.5s ease;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+    .project-card:hover .card-icon { transform: scale(1.1) translateZ(30px); }
+
+    .card-title {
+      font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 1rem; color: white; font-weight: 700;
     }
 
-    /* --- Modal --- */
-    .modal-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.85); 
-      backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1000; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s;
-      padding: 20px;
+    .tags {
+      display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;
     }
-    .modal-overlay.active { opacity: 1; pointer-events: all; }
-
-    .modal-content {
-      background: #1e293b;
-      width: 100%; max-width: 800px;
-      max-height: 90vh; overflow-y: auto;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.1);
-      padding: clamp(24px, 5vw, 48px);
-      position: relative;
-      transform: translateY(20px); transition: transform 0.3s;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    .tag {
+      font-size: 0.7rem; padding: 0.3rem 0.8rem; border-radius: 50px;
+      background: rgba(255,255,255,0.03); color: var(--text-muted);
+      border: 1px solid rgba(255,255,255,0.1); text-transform: uppercase; letter-spacing: 1px;
     }
-    .modal-overlay.active .modal-content { transform: translateY(0); }
 
-    .modal-close {
-      position: absolute; top: 20px; right: 20px;
-      background: rgba(255,255,255,0.1); border: none; color: white;
-      width: 36px; height: 36px; border-radius: 50%;
-      font-size: 1.2rem; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
+    .card-desc {
+      font-size: 1rem; color: var(--text-muted); margin-bottom: 3rem; flex-grow: 1; line-height: 1.7;
     }
-    .modal-close:hover { background: var(--color-accent); }
 
-    /* --- Footer --- */
+    .card-link {
+      font-family: var(--font-display); font-weight: 700; display: flex; align-items: center; gap: 0.75rem;
+      margin-top: auto; transition: gap 0.3s; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;
+    }
+    .project-card:hover .card-link { gap: 1.2rem; }
+
+    /* Floating Shapes */
+    .shape {
+      position: absolute; border: 1px solid rgba(255,255,255,0.05);
+      z-index: -1; animation: floatShape 25s infinite linear;
+    }
+    .s1 { width: 120px; height: 120px; top: 15%; left: 5%; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    .s2 { width: 80px; height: 80px; top: 60%; right: 10%; transform: rotate(45deg); }
+    .s3 { width: 100px; height: 100px; bottom: 15%; left: 15%; border-radius: 50%; border-style: dashed; }
+
+    @keyframes floatShape {
+      0% { transform: rotate(0deg) translateY(0); }
+      50% { transform: rotate(180deg) translateY(-30px); }
+      100% { transform: rotate(360deg) translateY(0); }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+
+    /* Footer */
     footer {
-      background: #020617;
-      padding: 60px 20px;
-      text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      margin-top: 60px;
+      text-align: center; padding: 4rem 2rem; border-top: var(--glass-border);
+      background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px);
     }
-    
-    /* Responsive text adjustments */
-    @media (max-width: 640px) {
-      .btn { width: 100%; margin-bottom: 10px; }
-      .hero-buttons { display: flex; flex-direction: column; width: 100%; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #020617; flex-direction: column; padding: 2rem; border-bottom: var(--glass-border); }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+      h1 { font-size: 3rem; }
+      .hero { padding-top: 4rem; }
     }
   </style>
 </head>
 <body>
 
+  <div class="scroll-progress"></div>
+
+  <!-- Exclusive Bar -->
+  <div class="exclusive-bar">
+    [ <span>A RAZIN SALEH EXCLUSIVE</span> ]
+  </div>
+
+  <!-- Background Layers -->
+  <div class="parallax-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Floating Shapes -->
+  <div class="shape s1"></div>
+  <div class="shape s2"></div>
+  <div class="shape s3"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="logo">
+      <i class="fa-solid fa-layer-group"></i> NEXUS
+    </a>
+    <div class="nav-links">
+      <a href="#projects" class="nav-link">Research Projects</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">Contact</a>
+    </div>
+    <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+  </nav>
+
   <!-- Hero Section -->
   <section class="hero">
-    <div class="hero-bg-anim"></div>
-    <div class="container">
-      <div class="chip">
-        <i class="fa-solid fa-bolt"></i> Integrated Renewable Framework
-      </div>
-      <h1>HAYTHAM <span class="text-gradient">X ONE</span></h1>
-      <p class="subtitle">A reliable energy nexus for Bangladesh combining Concentrating Solar Power, AI, and Hybrid Storage Systems.</p>
+    <h1>Engineering the <br><span>Future of Resilience</span></h1>
+    <p>A multidisciplinary research portfolio exploring advanced technical frameworks in sustainable agriculture, autonomous water restoration, and renewable energy systems for the Ganges Delta.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Research</a>
+      <a href="#" class="btn btn-outline">About Razin</a>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fa-solid fa-angles-down"></i>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <div id="projects" class="projects-section">
+    <div class="section-header reveal">
+      <h2>Selected Works</h2>
+      <p>Three pillars of sustainable development engineered for impact.</p>
+    </div>
+
+    <div class="grid-3">
       
-      <div class="hero-buttons">
-        <a href="#abstract" class="btn outline" style="margin-right: 10px;"><i class="fa-solid fa-file-lines"></i> Read Abstract</a>
-        <a href="#technologies" class="btn"><i class="fa-solid fa-microchip"></i> Discover Tech</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Abstract Section -->
-  <section id="abstract" class="container section visible">
-    <div class="section-header">
-      <h2>Abstract</h2>
-      <p>Project Overview & Context</p>
-    </div>
-    <div class="abstract-box">
-      <p>
-        Bangladesh is currently dealing with energy production problems characterized by recurrent load shedding and total reliance on foreign fossil fuel imports. In order to ensure a consistent and dependable supply of electricity constantly, the HAYTHAM X ONE project offers the idea of using an innovative integrated approach that combines cutting-edge Concentrating Solar Power (CSP) technology with effective energy storage systems supervised by Artificial Intelligence (AI) driven management while utilizing Bangladesh's geographic and environmental potential.
-      </p>
-      <p>
-        This approach optimizes operational efficiency and minimizes energy loss, positioning Bangladesh as a green energy leader in the region. The effectiveness of renewable energy sources is largely dependent on favorable weather. To counter this issue, our proposed framework combines CSP, various redundant independent energy storage systems such as Reverse Electrodialysis (RED) batteries and sand thermal storage in response to Bangladesh's energy needs and climate. Additionally, this paper explores the production of hydrogen as a renewable fuel source [1].
-      </p>
-    </div>
-  </section>
-
-  <!-- Key Stats Infographics -->
-  <section class="container section">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <i class="stat-icon fa-solid fa-tower-broadcast"></i>
-        <div class="stat-value text-gradient">1000<span style="font-size: 1.5rem">MW</span></div>
-        <div class="stat-label">Total Capacity</div>
-        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">4 Towers x 250MW</p>
-      </div>
-      <div class="stat-card">
-        <i class="stat-icon fa-solid fa-table-cells"></i>
-        <div class="stat-value" style="color: var(--color-blue)">21,400</div>
-        <div class="stat-label">Heliostats / Tower</div>
-        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">AI-Tracked Mirrors</p>
-      </div>
-      <div class="stat-card">
-        <i class="stat-icon fa-solid fa-temperature-high"></i>
-        <div class="stat-value" style="color: var(--color-accent)">1500°C</div>
-        <div class="stat-label">Peak Temperature</div>
-        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">Molten Salt Receiver</p>
-      </div>
-      <div class="stat-card">
-        <i class="stat-icon fa-solid fa-leaf"></i>
-        <div class="stat-value" style="color: var(--color-green)">1M+</div>
-        <div class="stat-label">Tons CO₂ Saved/Yr</div>
-        <p style="text-align: center; font-size: 0.8rem; opacity: 0.7; margin: 5px 0 0 0;">vs Fossil Fuels</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Data Visualization Section -->
-  <section id="data-visuals" class="container section">
-    <div class="section-header">
-      <h2>Projected Performance Data</h2>
-      <p>Visualizing efficiency and power distribution based on theoretical frameworks.</p>
-    </div>
-
-    <div class="chart-container-wrapper">
-      <!-- Chart 1: Power Contribution -->
-      <div class="chart-card">
-        <h3><i class="fa-solid fa-battery-full"></i> Backup Capacity Potential</h3>
-        <div class="chart-canvas-container">
-          <canvas id="storageChart"></canvas>
-        </div>
+      <!-- SOIL CARD -->
+      <div class="card-wrapper" style="animation-delay: 0.1s;">
+        <a href="https://radiantrider38.github.io/agri/" class="project-card" data-theme="soil">
+          <div class="card-icon"><i class="fa-solid fa-seedling"></i></div>
+          <h3 class="card-title">Smart Agriculture</h3>
+          <div class="tags">
+            <span class="tag">IoT Network</span>
+            <span class="tag">Robotics</span>
+            <span class="tag">AI</span>
+          </div>
+          <p class="card-desc">
+            A precision farming ecosystem integrating real-time soil chemical sensing, automated pest control, and predictive micro-climate modeling to maximize crop yield.
+          </p>
+          <div class="card-link">
+            View Thesis <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </a>
       </div>
 
-      <!-- Chart 2: Efficiency Comparison -->
-      <div class="chart-card">
-        <h3><i class="fa-solid fa-gauge-high"></i> Efficiency Metrics</h3>
-        <div class="chart-canvas-container">
-          <canvas id="efficiencyChart"></canvas>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- System Workflow Infographic -->
-  <section class="container section">
-    <div class="section-header">
-      <h2>System Workflow</h2>
-      <p>The integrated path from seawater to sustainable electricity (Ref. Section 3.1).</p>
-    </div>
-
-    <div class="workflow-wrapper">
-      <!-- Row 1: Intake -->
-      <div class="flow-row">
-        <div class="flow-node">
-          <i class="fa-solid fa-water"></i>
-          <h4>Seawater Intake</h4>
-          <p>Filtered & Pumped</p>
-        </div>
-        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="flow-node heat">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <h4>PTR & HTBS</h4>
-          <p>Separates Brine & Freshwater</p>
-        </div>
+      <!-- WATER CARD -->
+      <div class="card-wrapper" style="animation-delay: 0.2s;">
+        <a href="https://radiantrider38.github.io/water/" class="project-card" data-theme="water">
+          <div class="card-icon"><i class="fa-solid fa-droplet"></i></div>
+          <h3 class="card-title">Project W.A.T.E.R.</h3>
+          <div class="tags">
+            <span class="tag">Restoration</span>
+            <span class="tag">Autonomous</span>
+            <span class="tag">Circular</span>
+          </div>
+          <p class="card-desc">
+            A theoretical framework utilizing autonomous bubble barriers to intercept transboundary pollution and upcycle river waste into clean energy and materials.
+          </p>
+          <div class="card-link">
+            View Thesis <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </a>
       </div>
 
-      <!-- Vertical Arrow -->
-      <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
-
-      <!-- Row 2: Generation -->
-      <div class="flow-row">
-        <div class="flow-node heat">
-          <i class="fa-regular fa-sun"></i>
-          <h4>CSP Tower</h4>
-          <p>Concentrates Heat (1500°C)</p>
-        </div>
-        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="flow-node">
-          <i class="fa-solid fa-fan"></i>
-          <h4>Steam Turbine</h4>
-          <p>Generates Main Electricity</p>
-        </div>
-        <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-        <div class="flow-node green">
-          <i class="fa-solid fa-network-wired"></i>
-          <h4>National Grid</h4>
-          <p>Dispatchable Power</p>
-        </div>
+      <!-- ENERGY CARD -->
+      <div class="card-wrapper" style="animation-delay: 0.3s;">
+        <a href="https://radiantrider38.github.io/energy/" class="project-card" data-theme="energy">
+          <div class="card-icon"><i class="fa-solid fa-bolt"></i></div>
+          <h3 class="card-title">HAYTHAM X ONE</h3>
+          <div class="tags">
+            <span class="tag">CSP</span>
+            <span class="tag">Hydrogen</span>
+            <span class="tag">Thermal</span>
+          </div>
+          <p class="card-desc">
+            A reliable energy nexus combining Concentrating Solar Power (CSP) with thermal sand storage and hydrogen fuel cells for continuous grid electricity.
+          </p>
+          <div class="card-link">
+            View Thesis <i class="fa-solid fa-arrow-right-long"></i>
+          </div>
+        </a>
       </div>
 
-      <!-- Vertical Arrow Split -->
-      <div style="width: 100%; text-align: center; margin: 10px 0; color: rgba(255,255,255,0.3);">
-        <i class="fa-solid fa-arrow-down-long"></i> <span style="font-size: 0.8rem; margin-left: 10px;">EXCESS ENERGY & BYPRODUCTS</span>
-      </div>
-
-      <!-- Row 3: Storage -->
-      <div class="flow-row">
-        <div class="flow-node">
-          <i class="fa-solid fa-flask"></i>
-          <h4>RED Battery</h4>
-          <p>Uses Brine Gradient</p>
-        </div>
-        <div class="flow-node heat">
-          <i class="fa-solid fa-hourglass-half"></i>
-          <h4>Sand Storage</h4>
-          <p>Thermal Battery (800°C)</p>
-        </div>
-        <div class="flow-node green">
-          <i class="fa-solid fa-atom"></i>
-          <h4>Hydrogen (TCWSP)</h4>
-          <p>Fuel Cell Storage</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Technologies Grid -->
-  <section id="technologies" class="container section">
-    <div class="section-header">
-      <h2>Core Technologies</h2>
-      <p>Click any card to explore the engineering behind the nexus.</p>
-    </div>
-
-    <div class="tech-grid">
-      <!-- CSP -->
-      <div class="tech-card" onclick="openModal('csp')">
-        <div class="tech-icon-box"><i class="fa-regular fa-sun"></i></div>
-        <h3>Concentrating Solar Power</h3>
-        <p>Uses 21,400 heliostats per tower to focus sunlight, achieving temperatures previously unattainable in standard solar setups [2].</p>
-      </div>
-
-      <!-- Sand -->
-      <div class="tech-card" onclick="openModal('sand')">
-        <div class="tech-icon-box"><i class="fa-solid fa-hourglass"></i></div>
-        <h3>Sand Thermal Storage</h3>
-        <p>A cost-effective single-tank thermocline system using silica sand to store heat at 80% efficiency for night deployment [4][5].</p>
-      </div>
-
-      <!-- RED -->
-      <div class="tech-card" onclick="openModal('red')">
-        <div class="tech-icon-box"><i class="fa-solid fa-battery-bolt"></i></div>
-        <h3>Reverse Electrodialysis</h3>
-        <p>Generates power from the salinity difference between freshwater and brine, acting as a robust emergency backup [6].</p>
-      </div>
-
-      <!-- Hydrogen -->
-      <div class="tech-card" onclick="openModal('h2')">
-        <div class="tech-icon-box"><i class="fa-solid fa-atom"></i></div>
-        <h3>Hydrogen Production</h3>
-        <p>Thermo-Chemical Water Splitting (TCWSP) uses excess heat (800-1200°C) to split water into clean hydrogen fuel [10].</p>
-      </div>
-
-      <!-- Fuel Cells -->
-      <div class="tech-card" onclick="openModal('hfc')">
-        <div class="tech-icon-box"><i class="fa-solid fa-charging-station"></i></div>
-        <h3>Hydrogen Fuel Cells</h3>
-        <p>PEMFC units convert stored hydrogen back to electricity with >60% efficiency, producing only water as a byproduct.</p>
-      </div>
-
-      <!-- AI -->
-      <div class="tech-card" onclick="openModal('ai')">
-        <div class="tech-icon-box"><i class="fa-solid fa-brain"></i></div>
-        <h3>AI Management</h3>
-        <p>Reinforcement Learning optimizes heliostat angles while Neural Networks predict weather patterns to balance load [13].</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- References Section -->
-  <section id="references" class="container section">
-    <div class="section-header">
-      <h2>References</h2>
-      <p>Scientific sources and literature cited in the research paper.</p>
-    </div>
-    <div class="abstract-box">
-      <ul class="references-list">
-        <li>Behar, O., Khellaf, A., & Mohammedi, K. (2013). A review of studies on central receiver solar thermal power plants. Renewable and Sustainable Energy Reviews, 23, 12-39.</li>
-        <li>Singh, S., & Singh, A. (2017). Performance analysis of concentrated solar power and photovoltaic system: A case study of India. Energy, 134, 920-931.</li>
-        <li>Yu, Z., Wang, J., & Gao, M. (2017). Performance and cost analysis of parabolic trough solar power plants based on a novel multi-effect design. Energy Conversion and Management, 153, 616-625.</li>
-        <li>Ho, C., & Kolb, B. (2014). A review of high-temperature central receiver designs for concentrating solar power. Renewable and Sustainable Energy Reviews, 29, 835-846.</li>
-        <li>Kearney, A., Torres, J. P., & Tellez, D. (2010). Parabolic trough solar technology: Current status and future trends. Journal of Solar Energy Engineering, 132(4).</li>
-        <li>Calise, F., & Vanoli, L. (2020). Hybrid solar power plants: Renewable energy integration in concentrated solar power systems. Journal of Cleaner Production, 267, 121983.</li>
-        <li>Lilliestam, J., & Pitz-Paal, R. (2018). Concentrating solar power for less than USD 0.07 per kWh: Finally the breakthrough? Renewable Energy Focus, 26, 17-21.</li>
-        <li>Sgobba, F., & Babini, A. (2021). Hydrogen production from CSP plants: Integration of electrolysis in solar towers. International Journal of Hydrogen Energy, 46(8), 6195-6206.</li>
-        <li>Zhang, L., Zhao, X., & Wang, R. (2019). High-temperature electrolysis for hydrogen production from renewable energy systems. Journal of Power Sources, 438, 227008.</li>
-        <li>Abanades, S., & Flamant, G. (2006). Hydrogen production from solar thermochemical water splitting. Energy Conversion and Management, 47(3), 287-329.</li>
-        <li>Sustainable and Renewable Energy Development Authority (SREDA). (2016). Power System Master Plan 2016.</li>
-        <li>International Renewable Energy Agency (IRENA). (2018). Renewable Power Generation Costs in 2017. IRENA.</li>
-        <li>Jardine, A., Lin, D., & Banjevic, D. (2006). A review on machinery diagnostics and prognostics implementing condition-based maintenance. Mechanical Systems and Signal Processing, 20(7), 1483-1510.</li>
-        <li>Zahran, E., & Dabous, S. (2020). Wind resistance and structural stability in solar plant design. International Journal of Structural Engineering, 12(2), 134-150.</li>
-        <li>International Energy Agency (IEA). (2019). The Role of Renewables in Reducing CO2 Emissions. IEA.</li>
-        <li>Lattemann, S., & Höpner, T. (2008). Environmental impact and impact assessment of seawater desalination. Desalination, 220(1-3), 1-15.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <h3 style="color: white; margin-bottom: 10px;">HAYTHAM X ONE</h3>
-      <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 20px;">
-        Research Project: Renewable Energy Nexus for Bangladesh.<br>
-        Data derived from theoretical framework and simulation models (2024).
-      </p>
-      <div style="font-size: 1.2rem; color: var(--color-text-muted);">
-        <i class="fa-brands fa-github" style="margin: 0 10px; cursor: pointer;"></i>
-        <i class="fa-brands fa-researchgate" style="margin: 0 10px; cursor: pointer;"></i>
-        <i class="fa-solid fa-envelope" style="margin: 0 10px; cursor: pointer;"></i>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Modal Structure -->
-  <div id="modal" class="modal-overlay">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div id="modal-body-content">
-        <!-- Content injected via JS -->
-      </div>
     </div>
   </div>
 
+  <footer>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">© 2025 Integrated Research Portfolio • A Razin Saleh Production</p>
+    <div style="display: flex; gap: 2rem; justify-content: center; font-size: 1.5rem;">
+      <a href="#" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'"><i class="fa-brands fa-github"></i></a>
+      <a href="#" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="#" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </footer>
+
   <script>
-    // --- Intersection Observer for Scroll Animations ---
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    // Parallax on Mouse Move
+    document.addEventListener('mousemove', (e) => {
+      const orbs = document.querySelectorAll('.orb');
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+
+      orbs.forEach((orb, index) => {
+        const speed = (index + 1) * 15;
+        orb.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
       });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
     });
 
-    // --- Chart.js Configuration ---
-    Chart.defaults.color = '#94a3b8';
-    Chart.defaults.font.family = 'Inter';
-
-    // Chart 1: Backup Storage Capacity (Data from Table 1)
-    const ctxStorage = document.getElementById('storageChart').getContext('2d');
-    new Chart(ctxStorage, {
-      type: 'doughnut',
-      data: {
-        labels: ['Sand Storage (Primary)', 'Hydrogen Fuel Cell', 'RED Battery'],
-        datasets: [{
-          data: [1190.6, 568.8, 525], 
-          backgroundColor: ['#f97316', '#3b82f6', '#10b981'],
-          borderWidth: 0,
-          hoverOffset: 10
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { position: 'bottom', labels: { padding: 20 } },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                return ` ${context.label}: ${context.raw} MW Output`;
-              }
-            }
-          }
-        },
-        layout: { padding: 10 }
-      }
-    });
-
-    // Chart 2: Efficiency Comparison
-    const ctxEff = document.getElementById('efficiencyChart').getContext('2d');
-    new Chart(ctxEff, {
-      type: 'bar',
-      data: {
-        labels: ['Sand Storage', 'HFC Conversion', 'Steam Turbine', 'RED System'],
-        datasets: [{
-          label: 'Thermal/Energy Efficiency (%)',
-          data: [80, 60, 45, 35], 
-          backgroundColor: 'rgba(59, 130, 246, 0.6)',
-          borderColor: '#3b82f6',
-          borderWidth: 1,
-          borderRadius: 4
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: { 
-            beginAtZero: true, 
-            grid: { color: 'rgba(255,255,255,0.05)' },
-            max: 100
-          },
-          x: { grid: { display: false } }
-        },
-        plugins: {
-          legend: { display: false }
-        }
-      }
-    });
-
-    // --- Modal Logic ---
-    const modalData = {
-      csp: {
-        title: "Concentrating Solar Power (CSP)",
-        content: `
-          <h3 class="text-gradient">Power Generation Core</h3>
-          <p>CSP tower systems use arrays of heliostats (mirrors that track the sun) to concentrate sunlight onto a central receiver. In the HAYTHAM X ONE project:</p>
-          <ul style="margin: 0 0 20px 20px; color: #cbd5e1; list-style-type: disc;">
-             <li><strong>21,400 Heliostats</strong> per tower ensure maximum solar flux [Section 4.1].</li>
-             <li><strong>1500°C Temperature</strong> is achieved using Molten Salt (40% Sodium Nitrate / 60% Potassium Nitrate) as the heat transfer fluid.</li>
-             <li><strong>Steam Turbines</strong> (Siemens SST-700/900 Series) convert this heat to electricity with approximately 45% thermal efficiency [Section 3.5].</li>
-          </ul>
-          <p>This allows for power generation efficiency significantly higher than traditional PV cells in tropical climates, addressing the need for stable renewable baseload power.</p>`
-      },
-      sand: {
-        title: "Sand Thermal Storage",
-        content: `
-          <h3 class="text-gradient" style="color: var(--color-accent)">Primary Storage Medium</h3>
-          <p>To solve the issue of night-time energy needs, the project utilizes a <strong>Single-Tank Thermocline System</strong> with silica sand [Section 2.2].</p>
-          <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; margin: 20px 0;">
-            <p style="margin-bottom: 5px;"><i class="fa-solid fa-check-circle" style="color: var(--color-green)"></i> <strong>80% Thermal Efficiency</strong></p>
-            <p style="margin-bottom: 5px;"><i class="fa-solid fa-check-circle" style="color: var(--color-green)"></i> <strong>Low Cost</strong> compared to Lithium-ion or pure Molten Salt.</p>
-            <p style="margin-bottom: 0;"><i class="fa-solid fa-check-circle" style="color: var(--color-green)"></i> <strong>1,190.6 MW</strong> potential output capacity [Table 1].</p>
-          </div>
-          <p>Hot fluid enters the top, driving a temperature gradient downward. Reversing flow extracts heat for steam generation at night. This utilizes non-construction grade sand, making it highly viable for Bangladesh.</p>`
-      },
-      red: {
-        title: "Reverse Electrodialysis (RED)",
-        content: `
-          <h3 class="text-gradient" style="color: var(--color-blue)">Salinity Gradient Power</h3>
-          <p>Located in coastal regions, this system exploits the difference between freshwater (from the project's desalination units) and brine (residue) [Section 2.3].</p>
-          <p><strong>Mechanism:</strong> Ions move through 10,000 selective membranes, creating an electric potential from the chemical potential difference.</p>
-          <p><strong>Role:</strong> Acts as a long-duration emergency backup (525 MW capacity) for extreme weather conditions when solar irradiance is negligible for days.</p>`
-      },
-      h2: {
-        title: "Hydrogen Production (TCWSP)",
-        content: `
-          <h3 class="text-gradient">Thermo-Chemical Water Splitting</h3>
-          <p>Instead of expensive electrolysis, this project uses excess thermal energy (Heat) to split water [Section 2.4].</p>
-          <ul style="margin: 0 0 20px 20px; color: #cbd5e1; list-style-type: disc;">
-             <li>Operates at <strong>800°C - 1200°C</strong>.</li>
-             <li>Uses Iodine-Sulfur cycles to chemically separate Hydrogen and Oxygen.</li>
-             <li><strong>Zero Emissions:</strong> The only input is water and heat; the only output is Hydrogen and Oxygen.</li>
-          </ul>
-          <p>This creates an export opportunity for green hydrogen while securing domestic energy independence.</p>`
-      },
-      hfc: {
-        title: "Hydrogen Fuel Cells",
-        content: `
-          <h3 class="text-gradient">Secondary Backup</h3>
-          <p>Stored hydrogen from the TCWSP is fed into Proton Exchange Membrane Fuel Cells (PEMFC) [Section 2.5].</p>
-          <p>These cells have an efficiency of over <strong>60%</strong> and provide a dispatchable load of <strong>568.8 MW</strong>. This creates a circular economy where excess daytime heat becomes night-time electricity or exportable green fuel. The only byproduct is pure water, which is recycled back into the system.</p>`
-      },
-      ai: {
-        title: "AI Management System",
-        content: `
-          <h3 class="text-gradient">The Digital Brain</h3>
-          <p>The entire nexus is governed by a multi-layered AI system [Section 2.6]:</p>
-          <ul style="margin: 0 0 20px 20px; color: #cbd5e1; list-style-type: disc;">
-             <li><strong>Reinforcement Learning (RL):</strong> Adjusts 21,400 mirrors in real-time to track the sun with < 0.1° error, adapting to wind and cloud cover.</li>
-             <li><strong>Deep Neural Networks (DNN):</strong> Predicts cloud cover and energy demand to switch between Storage and Grid modes.</li>
-             <li><strong>Predictive Maintenance:</strong> Reduces downtime by 30-50% by detecting turbine vibration anomalies before failure.</li>
-          </ul>`
-      }
+    // Scroll Progress Bar
+    window.onscroll = function() {
+      let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrolled = (winScroll / height) * 100;
+      document.querySelector(".scroll-progress").style.width = scrolled + "%";
     };
 
-    function openModal(key) {
-      const data = modalData[key];
-      const modal = document.getElementById('modal');
-      const contentDiv = document.getElementById('modal-body-content');
-      
-      contentDiv.innerHTML = `
-        <h2 style="font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 10px;">${data.title}</h2>
-        <div style="width: 60px; height: 4px; background: var(--gradient-main); margin-bottom: 24px; border-radius: 2px;"></div>
-        <div style="font-size: 1.05rem; line-height: 1.8;">${data.content}</div>
-      `;
-      
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-    function closeModal() {
-      document.getElementById('modal').classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Close on outside click
-    document.getElementById('modal').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('modal')) closeModal();
+    menuToggle.addEventListener('click', () => {
+      const isVisible = navLinks.style.display === 'flex';
+      navLinks.style.display = isVisible ? 'none' : 'flex';
     });
-    
-    // Esc key close
-    document.addEventListener('keydown', (e) => {
-      if(e.key === "Escape") closeModal();
-    });
-
   </script>
+
 </body>
 </html>
