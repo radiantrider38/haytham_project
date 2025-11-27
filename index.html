@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Research Portfolio | Soil • Water • Energy</title>
-  <meta name="description" content="A centralized hub for sustainable development research projects by Razin Saleh.">
   
   <!-- Fonts -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -446,6 +445,13 @@
       text-align: center; padding: 4rem 2rem; border-top: var(--glass-border);
       background: rgba(2, 6, 23, 0.8); backdrop-filter: blur(10px);
     }
+    
+    .visitor-count {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+    }
 
     /* Responsive */
     @media (max-width: 768px) {
@@ -641,6 +647,9 @@
       <a href="#" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'"><i class="fa-brands fa-linkedin"></i></a>
       <a href="#" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='#94a3b8'"><i class="fa-solid fa-envelope"></i></a>
     </div>
+    <div class="visitor-count" id="visitor-display">
+      <!-- Counter will appear here -->
+    </div>
   </footer>
 
   <script>
@@ -730,6 +739,64 @@
       const activeRegion = document.getElementById(`division-${divName.toLowerCase()}`);
       if(activeRegion) activeRegion.classList.add('active');
     }
+  </script>
+
+  <!-- Firebase Realtime DB & Tracker -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, get, set, runTransaction, push, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+    // --- PASTE YOUR FIREBASE CONFIG HERE ---
+    const firebaseConfig = {
+       apiKey: "AIzaSyDZvetMzQc0K-9Vyx8oMdgPy749e2iZKMI",
+  authDomain: "nexus-portfolio-551a1.firebaseapp.com",
+  databaseURL: "https://nexus-portfolio-551a1-default-rtdb.firebaseio.com",
+  projectId: "nexus-portfolio-551a1",
+  storageBucket: "nexus-portfolio-551a1.firebasestorage.app",
+  messagingSenderId: "677212397246",
+  appId: "1:677212397246:web:5e828eaa216fa9341788ef"
+    };
+    // ---------------------------------------
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    async function trackVisitor() {
+      // 1. References
+      const counterRef = ref(db, 'stats/general/total_visits');
+      const visitsRef = ref(db, 'visits');
+
+      // Check session
+      const hasVisited = sessionStorage.getItem("hasVisited");
+
+      if (!hasVisited) {
+        // Safe Transaction increment
+        runTransaction(counterRef, (currentCount) => {
+          return (currentCount || 0) + 1;
+        });
+
+        // Log the visit
+        push(visitsRef, {
+          timestamp: serverTimestamp(),
+          userAgent: navigator.userAgent,
+          page: window.location.pathname
+        });
+
+        sessionStorage.setItem("hasVisited", "true");
+      }
+
+      // 2. Display Counter
+      try {
+        const snapshot = await get(counterRef);
+        if (snapshot.exists()) {
+          document.getElementById('visitor-display').innerText = `Total Views: ${snapshot.val()}`;
+        }
+      } catch (e) {
+        console.error("Counter error", e);
+      }
+    }
+
+    trackVisitor();
   </script>
 
 </body>
